@@ -11,7 +11,7 @@ import { Search } from "lucide-react";
 
 export default function ProductsSearch() {
     return (
-        <div className="w-full flex gap-4">
+        <div className="w-full h-10 flex gap-4">
             <Select>
                 <SelectTrigger className="w-[180px] border-[#4065DD]">
                     <SelectValue placeholder="Sort by" />
@@ -28,10 +28,10 @@ export default function ProductsSearch() {
                 </SelectContent>
             </Select>
             <Input
-                className="border-[#4065DD] focus-visible:ring-[#ACB8FE]"
+                className="h-full border-[#4065DD] focus-visible:ring-[#ACB8FE]"
                 placeholder="Search"
             />
-            <Button className="bg-[#E6B724] hover:bg-[#F0EB8F]">
+            <Button className="h-full bg-[#E6B724] hover:bg-[#F0EB8F]">
                 <Search />
             </Button>
         </div>

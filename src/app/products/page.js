@@ -1,19 +1,11 @@
 import ProductsFilters from "@/components/products/ProductsFilters";
 import ProductsSearch from "@/components/products/ProductsSearch";
 import ProductsBody from "@/components/products/ProductsBody";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination"
+import Wrapper from "@/components/Wrapper";
 
 export default function Page() {
     return (
-        <>
+        <Wrapper>
             <div className="w-full flex flex-col px-16 gap-2">
                 <h1 className="text-6xl font-bold">Products</h1>
                 <p>Designed for modern living, made for growing families. Explore Mamiko’s collection of clean, practical essentials.</p>
@@ -25,6 +17,6 @@ export default function Page() {
                     <ProductsBody />
                 </div>
             </div>
-        </>
+        </Wrapper>
     );
 }

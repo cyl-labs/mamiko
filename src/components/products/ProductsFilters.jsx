@@ -19,7 +19,7 @@ export default function ProductsFilters() {
                 <ProductsFilter name="Oral Care" />
                 <ProductsFilter name="Potty" />
                 <ProductsFilter name="Travel & Storage" />
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-4">
                         <Checkbox className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD]" />
                         <h3 className="text-lg">Price</h3>
@@ -30,7 +30,6 @@ export default function ProductsFilters() {
                         min={0}
                         max={1000}
                         step={1}
-                        className="my-4"
                     />
                     <div className="flex justify-between">
                         <p>$0</p>
