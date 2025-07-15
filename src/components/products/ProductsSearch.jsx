@@ -11,23 +11,29 @@ import { Search } from "lucide-react";
 
 export default function ProductsSearch() {
     return (
-        <div className="w-full flex gap-8">
+        <div className="w-full flex gap-4">
             <Select>
-                <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Theme" />
+                <SelectTrigger className="w-[180px] border-[#4065DD]">
+                    <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                    <SelectItem value="Featured">Featured</SelectItem>
+                    <SelectItem value="Price, High to Low">Price, High to Low</SelectItem>
+                    <SelectItem value="Price, Low to High">Price, Low to High</SelectItem>
+                    <SelectItem value="Alphabetical, A-Z">Alphabetical, A-Z</SelectItem>
+                    <SelectItem value="Alphabetical, Z-A">Alphabetical, Z-A</SelectItem>
+                    <SelectItem value="Best Selling">Best Selling</SelectItem>
+                    <SelectItem value="Date, Old to New">Date, Old to New</SelectItem>
+                    <SelectItem value="Date, New to Old">Date, New to Old</SelectItem>
                 </SelectContent>
             </Select>
-            <div className="w-full flex gap-4">
-                <Input />
-                <Button>
-                    <Search />
-                </Button>
-            </div>
+            <Input
+                className="border-[#4065DD] focus-visible:ring-[#ACB8FE]"
+                placeholder="Search"
+            />
+            <Button className="bg-[#E6B724] hover:bg-[#F0EB8F]">
+                <Search />
+            </Button>
         </div>
     );
 }
