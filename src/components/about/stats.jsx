@@ -11,7 +11,7 @@ export default function Stats() {
 
   return (
     <motion.section
-      className="pb-[100px] px-[60px] min-h-[600px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[100px] px-16 min-h-[600px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Mission() {
   return (
     <motion.section
-      className="px-[60px] pb-[100px] flex flex-row justify-center gap-28 items-center max-w-[1600px] mx-auto"
+      className="px-16 pb-[100px] flex flex-row justify-center gap-28 items-center max-w-[1600px] mx-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}

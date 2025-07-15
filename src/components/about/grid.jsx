@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Grid() {
   return (
     <motion.section
-      className="grid min-h-[720px] grid-cols-5 grid-rows-3 gap-2.5 p-2.5 pb-[100px] px-[60px]"
+      className="grid min-h-[720px] grid-cols-5 grid-rows-3 gap-2.5 p-2.5 px-16"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
