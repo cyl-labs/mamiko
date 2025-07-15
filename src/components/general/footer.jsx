@@ -42,6 +42,7 @@ export default function Footer() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
+      className="mt-12"
     >
       <motion.div
         className="footer-line h-0.5 bg-gray-500 w-full"

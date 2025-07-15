@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <motion.section
-      className="py-[42px] px-[60px] flex flex-row justify-between text-center items-center"
+      className="py-12 px-16 flex flex-row justify-between text-center items-center"
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
