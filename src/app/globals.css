@@ -120,3 +120,69 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Harmonia Sans Import */
+
+/* Bold */
+@font-face {
+  font-family: "Harmonia Sans Pro Cyr";
+  src: url("../fonts/HarmoniaSansProCyr-Black.eot");
+  src: local("Harmonia Sans Pro Cyr Black"), local("HarmoniaSansProCyr-Black"),
+    url("../fonts/HarmoniaSansProCyr-Black.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/HarmoniaSansProCyr-Black.woff2") format("woff2"),
+    url("../fonts/HarmoniaSansProCyr-Black.woff") format("woff"),
+    url("../fonts/HarmoniaSansProCyr-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  ascent-override: 100%;
+}
+
+.harmonia-bold {
+  font-family: "Harmonia Sans Pro Cyr";
+}
+
+/* Regular */
+@font-face {
+  font-family: "Harmonia Sans Pro Cyr Semi Bd";
+  src: url("../fonts/HarmoniaSansProCyr-SemiBd.eot");
+  src: local("Harmonia Sans Pro Cyr Semi Bd"),
+    local("HarmoniaSansProCyr-SemiBd"),
+    url("../fonts/HarmoniaSansProCyr-SemiBd.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/HarmoniaSansProCyr-SemiBd.woff2") format("woff2"),
+    url("../fonts/HarmoniaSansProCyr-SemiBd.woff") format("woff"),
+    url("../fonts/HarmoniaSansProCyr-SemiBd.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  ascent-override: 100%;
+}
+
+.harmonia-regular {
+  font-family: "Harmonia Sans Pro Cyr Semi Bd";
+}
+
+/* Light */
+@font-face {
+  font-family: "Harmonia Sans Pro Cyr Light";
+  src: url("../fonts/HarmoniaSansProCyr-Light.eot");
+  src: local("Harmonia Sans Pro Cyr Light"), local("HarmoniaSansProCyr-Light"),
+    url("../fonts/HarmoniaSansProCyr-Light.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/HarmoniaSansProCyr-Light.woff2") format("woff2"),
+    url("../fonts/HarmoniaSansProCyr-Light.woff") format("woff"),
+    url("../fonts/HarmoniaSansProCyr-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  ascent-override: 100%;
+}
+
+.harmonia-light {
+  font-family: "Harmonia Sans Pro Cyr Light";
+}
