@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react";
 import ProductsItem from "./ProductsItem";
 import {
     Pagination,
@@ -8,23 +11,32 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
+import { supabase } from "@/lib/supabase";
 
 export default function ProductsBody() {
+    const [products, setProducts] = useState([]);
+
+    async function selectProducts() {
+        const { data, error } = await supabase.from("Products").select("*");
+        if (error) console.error(error);
+        else {
+            setProducts(data);
+            console.log(data[0].price.toFixed(2))
+        }
+    }
+
+    useEffect(() => {
+        selectProducts();
+    }, []);
+
     return (
         <div className="flex flex-col">
             <div className="grid grid-cols-4 gap-8">
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
-                <ProductsItem />
+                {products.map((product, index) => {
+                    return (
+                        <ProductsItem key={index} product={product} />
+                    );
+                })}
             </div>
             <Pagination className="my-12">
                 <PaginationContent>

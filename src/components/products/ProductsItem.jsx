@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-export default function ProductsItem() {
+export default function ProductsItem({ product }) {
     return (
         <motion.div
             className="flex flex-col gap-2"
@@ -24,14 +24,14 @@ export default function ProductsItem() {
                 >
                     <Button className="w-full bg-[#4065DD] hover:bg-[#ACB8FE]">Add to cart</Button>
                 </motion.div>
-                <Link href="/product/1">
+                <Link href={`/product/${product.id}`}>
                     <Image
-                        src="/images/bottles.png"
+                        src={product.image_url}
                         alt=""
                         fill
                     />
                 </Link>
-                <Link href="/product/1">
+                <Link href={`/product/${product.id}`}>
                     <motion.div
                         className="relative"
                         variants={{
@@ -40,19 +40,19 @@ export default function ProductsItem() {
                         }} 
                     >
                         <img
-                            src="/images/mamiko-bottles.jpg"
+                            src={product.secondary_image_urls[0]}
                             alt=""
                         />
                     </motion.div>
                 </Link>
             </motion.div>
-            <Link href="/product/1">
+            <Link href={`/product/${product.id}`}>
                 <motion.div
                     className="flex flex-col text-lg gap-2"
                     whileHover="hover"
                 >
-                    <h3>Classic SIMONO</h3>
-                    <p>$25.<span className="text-sm">00</span> SGD</p>
+                    <h3>{product.name}</h3>
+                    <p>${product.price.toFixed(2)} SGD</p>
                 </motion.div>
             </Link>
         </motion.div>

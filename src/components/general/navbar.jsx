@@ -2,9 +2,14 @@
 import { CircleUserRound, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Navbar() {
-  const navItems = ["Home", "Products", "About"];
+  const navItems = [
+    { name: "Home", link: "/" },
+    { name: "Products", link: "/products" },
+    { name: "About", link: "/about" }
+  ];
 
   return (
     <motion.section
@@ -14,18 +19,20 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="nav-left flex flex-row gap-28">
-        <motion.div
-          initial={{ x: -20, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-        >
-          <Image
-            src="/images/logo.png"
-            width={114}
-            height={0}
-            alt="Mamiko Logo"
-          />
-        </motion.div>
+        <Link href="/">
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            <Image
+              src="/images/logo.png"
+              width={114}
+              height={0}
+              alt="Mamiko Logo"
+            />
+          </motion.div>
+        </Link>
         <motion.div
           className="flex flex-row gap-16 text-xl text-center items-center harmonia-regular"
           initial={{ opacity: 0 }}
@@ -33,23 +40,17 @@ export default function Navbar() {
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         >
           {navItems.map((item, index) => (
-            <motion.p
-              key={item}
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 0.4,
-                delay: 0.4 + index * 0.1,
-                ease: "easeOut",
-              }}
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.2 },
-              }}
-              className="cursor-pointer"
-            >
-              {item}
-            </motion.p>
+            <Link key={index} href={item.link}>
+              <motion.p
+                initial={{ y: -10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                whileHover={{
+                  scale: 1.1
+                }}
+              >
+                {item.name}
+              </motion.p>
+            </Link>
           ))}
         </motion.div>
       </div>
@@ -61,8 +62,7 @@ export default function Navbar() {
       >
         <motion.div
           whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.2 },
+            scale: 1.1
           }}
           whileTap={{ scale: 0.95 }}
         >
@@ -70,8 +70,7 @@ export default function Navbar() {
         </motion.div>
         <motion.div
           whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.2 },
+            scale: 1.1
           }}
           whileTap={{ scale: 0.95 }}
         >
