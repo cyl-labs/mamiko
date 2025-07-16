@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import ProductsItem from "./ProductsItem";
+import ProductsItems from "./ProductsItems";
 import {
     Pagination,
     PaginationContent,
@@ -31,13 +31,7 @@ export default function ProductsBody() {
 
     return (
         <div className="flex flex-col">
-            <div className="grid grid-cols-4 gap-8">
-                {products.map((product, index) => {
-                    return (
-                        <ProductsItem key={index} product={product} />
-                    );
-                })}
-            </div>
+            <ProductsItems products={products} />
             <Pagination className="my-12">
                 <PaginationContent>
                     <PaginationItem>

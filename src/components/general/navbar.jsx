@@ -27,7 +27,7 @@ export default function Navbar() {
           >
             <Image
               src="/images/logo.png"
-              width={114}
+              width={120}
               height={0}
               alt="Mamiko Logo"
             />
@@ -66,7 +66,7 @@ export default function Navbar() {
           }}
           whileTap={{ scale: 0.95 }}
         >
-          <CircleUserRound size={32} className="cursor-pointer" />
+          <CircleUserRound size={28} className="cursor-pointer" />
         </motion.div>
         <motion.div
           whileHover={{
@@ -74,7 +74,7 @@ export default function Navbar() {
           }}
           whileTap={{ scale: 0.95 }}
         >
-          <ShoppingCart size={32} className="cursor-pointer" />
+          <ShoppingCart size={28} className="cursor-pointer" />
         </motion.div>
       </motion.div>
     </motion.section>

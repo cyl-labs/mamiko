@@ -10,7 +10,7 @@ export default function Page() {
         <Wrapper>
             <Navbar />
             <div className="w-full flex flex-col px-16 gap-2">
-                <h1 className="text-6xl font-bold">Products</h1>
+                <h1 className="text-6xl text-[#4065DD] font-bold">Products</h1>
                 <p>Designed for modern living, made for growing families. Explore Mamiko’s collection of clean, practical essentials.</p>
             </div>
             <div className="flex mt-12 px-16 gap-16">
