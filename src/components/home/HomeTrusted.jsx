@@ -19,15 +19,40 @@ export default function HomeTrusted() {
       <div className="relative w-full h-[1000px] flex justify-center items-center">
         <div className="flex flex-col items-center absolute gap-4 top-[25%] z-10">
           <h3 className="flex flex-col text-5xl font-bold text-center gap-4 max-xl:text-4xl">
-            <span className="text-[#e6b724] dm-serif-text font-normal">
+            <motion.span
+              className="text-[#e6b724] dm-serif-text font-normal"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               Over 3,000
-            </span>
-            <p>Products Sold Last Month</p>
+            </motion.span>
+            <motion.p
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              Products Sold Last Month
+            </motion.p>
           </h3>
-          <p className="text-xl text-center max-xl:text-lg max-lg:text-base">
+          <motion.p
+            className="text-xl text-center max-xl:text-lg max-lg:text-base"
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
             Join the growing community who choose Mamiko every day.
-          </p>
-          <Button className="w-fit mt-4">Store</Button>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.3 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <Button className="w-fit mt-4">Store</Button>
+          </motion.div>
         </div>
         <motion.div
           className="absolute flex items-center justify-center pt-24"
@@ -64,22 +89,34 @@ export default function HomeTrusted() {
             fill
           />
         </div>
-        <div className="h-1/4 absolute right-[20%] bottom-[30%] rotate-10 aspect-[3/4] max-xl:right-[15%] max-md:right-[5%]">
-          <Image
-            className="object-cover"
-            src="/images/lion-stick.png"
-            alt=""
-            fill
-          />
-        </div>
-        <div className="h-1/4 absolute left-[20%] bottom-[30%] rotate-350 aspect-[3/4] max-xl:left-[15%] max-md:left-[5%]">
+        <motion.div
+          className="h-1/4 absolute left-[20%] bottom-[30%] rotate-350 aspect-[3/4] max-xl:left-[15%] max-md:left-[5%]"
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ delay: 0.4 }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
           <Image
             className="object-cover"
             src="/images/elephant-stick.png"
             alt=""
             fill
           />
-        </div>
+        </motion.div>
+        <motion.div
+          className="h-1/4 absolute right-[20%] bottom-[30%] rotate-10 aspect-[3/4] max-xl:right-[15%] max-md:right-[5%]"
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ delay: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          <Image
+            className="object-cover"
+            src="/images/lion-stick.png"
+            alt=""
+            fill
+          />
+        </motion.div>
       </div>
     </div>
   );
