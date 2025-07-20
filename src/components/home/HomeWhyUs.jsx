@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { HandHeart, Baby } from "lucide-react";
 
 export default function HomeWhyUs() {
@@ -15,7 +18,12 @@ export default function HomeWhyUs() {
         </div>
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4 max-md:text-center">
-            <h3 className="text-5xl font-bold max-xl:text-4xl max-lg:text-3xl">
+            <motion.h3
+              className="text-5xl font-bold max-xl:text-4xl max-lg:text-3xl"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               Thoughtfully made for{" "}
               <span className="text-[#e6b724] dm-serif-text font-normal">
                 everyday comfort
@@ -24,14 +32,26 @@ export default function HomeWhyUs() {
               <span className="text-[#e6b724] dm-serif-text font-normal">
                 convenience
               </span>
-            </h3>
-            <p className="text-xl max-xl:text-lg max-lg:text-base">
+            </motion.h3>
+            <motion.p
+              className="text-xl max-xl:text-lg max-lg:text-base"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               Where little moments make lasting memories, welcome to Mamiko,
               your home for everyday essentials built with love.
-            </p>
+            </motion.p>
           </div>
           <div className="flex flex-col gap-10 max-md:flex-row max-sm:flex-col">
-            <div className="flex justify-center items-center gap-4 max-md:w-1/2 max-sm:w-full">
+            <motion.div
+              className="flex justify-center items-center gap-4 max-md:w-1/2 max-sm:w-full"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               <HandHeart size={48} />
               <div>
                 <p className="text-2xl font-bold max-lg:text-xl max-lg:text-lg">
@@ -41,8 +61,14 @@ export default function HomeWhyUs() {
                   Everything we make puts your baby's comfort first.
                 </p>
               </div>
-            </div>
-            <div className="flex justify-center items-center gap-4 max-md:w-1/2 max-sm:w-full">
+            </motion.div>
+            <motion.div
+              className="flex justify-center items-center gap-4 max-md:w-1/2 max-sm:w-full"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               <Baby size={48} />
               <div>
                 <p className="text-2xl font-bold max-xl:text-xl max-lg:text-lg">
@@ -52,7 +78,7 @@ export default function HomeWhyUs() {
                   Smart designs that support you through everyday.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -67,12 +93,24 @@ export default function HomeWhyUs() {
           <div className="w-full absolute aspect-square top-1/2 left-1/2 -translate-x-2/5 -translate-y-1/2 z-10 max-md:-translate-x-1/2">
             <Image src="/images/why-us-baby.png" alt="" fill />
           </div>
-          <div className="w-1/2 absolute aspect-square left-[0%] top-[15%] rotate-310 max-md:left-[-10%]">
+          <motion.div
+            className="w-1/2 absolute aspect-square left-[0%] top-[15%] rotate-310 max-md:left-[-10%]"
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.4 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
             <Image src="/images/bottles.png" alt="" fill />
-          </div>
-          <div className="w-2/3 absolute aspect-square left-[-10%] bottom-[-25%] rotate-235 max-md:left-[-20%]">
+          </motion.div>
+          <motion.div
+            className="w-2/3 absolute aspect-square left-[-10%] bottom-[-25%] rotate-235 max-md:left-[-20%]"
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.5 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
             <Image src="/images/training-cups.png" alt="" fill />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
