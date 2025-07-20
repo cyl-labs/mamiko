@@ -18,7 +18,7 @@ export default function HeroAbout() {
       >
         {/* Background Image */}
         <Image
-          src="/images/heroabout.png"
+          src="/images/hero-about.png"
           width={1312}
           height={600}
           className="absolute inset-0 w-full h-full object-cover rounded-3xl"

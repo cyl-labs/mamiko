@@ -71,7 +71,7 @@ export default function Mission() {
           <b>私たちの使命</b>
         </motion.h2>
         <motion.div
-          className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-6 py-3 my-8 max-w-50"
+          className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-8 py-3 my-8 w-fit"
           initial={{ scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}

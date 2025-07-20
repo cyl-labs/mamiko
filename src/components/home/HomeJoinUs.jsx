@@ -1,0 +1,43 @@
+import Image from "next/image";
+import { Button } from "../ui/button";
+
+export default function HomeJoinUs() {
+  return (
+    <div className="relative z-20">
+      <div className="bg-[#e0f0f9] rounded-3xl relative overflow-hidden aspect-[13/6] z-10 max-sm:aspect-square">
+        <div className="w-full h-full flex flex-col justify-center items-center gap-8">
+          <div className="flex flex-col relative px-4 gap-[clamp(0px,1vw,16px)] z-10">
+            <h1 className="text-6xl font-bold text-[clamp(28px,4vw,64px)] text-center">
+              Changing{" "}
+              <span className="text-[#e6b724] dm-serif-text font-normal">
+                Little Lives
+              </span>
+              ,
+              <br /> One Product at a Time
+            </h1>
+            <p className="text-xl text-[clamp(16px,1.5vw,20px)] text-center">
+              Join the growing community who choose Mamiko every day.
+            </p>
+          </div>
+          <Button className="z-10">Learn more</Button>
+          <div className="w-3/5 absolute left-[-30%] top-[-55%] rotate-330 aspect-square max-sm:w-2/3 max-sm:left-[-30%] max-sm:top-[-30%]">
+            <Image src="/images/wipes.png" alt="" fill />
+          </div>
+          <div className="w-1/3 absolute left-[-10%] bottom-[-20%] rotate-40 aspect-square max-sm:w-1/2 max-sm:left-[-20%] max-sm:bottom-[-10%]">
+            <Image src="/images/bottles.png" alt="" fill />
+          </div>
+          <div className="w-1/2 absolute left-[15%] bottom-[-48%] aspect-square max-sm:w-3/5 max-sm:left-[15%] max-sm:bottom-[-20%]">
+            <Image src="/images/training-cups.png" alt="" fill />
+          </div>
+          <div className="w-3/5 absolute right-[-20%] bottom-[-45%] rotate-330 aspect-square max-sm:w-2/3 max-sm:right-[-30%] max-sm:bottom-[-20%]">
+            <Image src="/images/crocodile.png" alt="" fill />
+          </div>
+          <div className="w-1/2 absolute right-[-20%] top-[-30%] rotate-280 aspect-square max-sm:w-3/5 max-sm:right-[-15%] max-sm:top-[-20%] max-sm:rotate-220">
+            <Image src="/images/training-bottles.png" alt="" fill />
+          </div>
+        </div>
+      </div>
+      <div className="w-full bg-[#e6b724] rounded-3xl absolute blur-xl aspect-[13/6] top-0 max-sm:aspect-square"></div>
+    </div>
+  );
+}
