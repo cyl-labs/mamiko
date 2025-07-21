@@ -46,7 +46,7 @@ export default function HomeWhyUs() {
           </div>
           <div className="flex flex-col gap-10 max-md:flex-row max-sm:flex-col">
             <motion.div
-              className="flex justify-center items-center gap-4 max-md:w-1/2 max-sm:w-full"
+              className="flex items-center gap-4 max-md:w-1/2 max-md:justify-center max-sm:w-full"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.2 }}
@@ -63,7 +63,7 @@ export default function HomeWhyUs() {
               </div>
             </motion.div>
             <motion.div
-              className="flex justify-center items-center gap-4 max-md:w-1/2 max-sm:w-full"
+              className="flex items-center gap-4 max-md:w-1/2 max-md:justify-center max-sm:w-full"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.3 }}

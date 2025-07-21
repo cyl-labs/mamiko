@@ -1,8 +1,10 @@
 "use client";
+
 import { useState } from "react";
 import { X, Plus, Minus, ShoppingBag, Trash2 } from "lucide-react";
+import CheckoutButton from "./CheckoutButton";
 
-const Cart = ({ isOpen = false, onClose = () => {} }) => {
+export default function Cart({ isOpen = false, onClose = () => {} }) {
   const [confirmDelete, setConfirmDelete] = useState(null); // Store the item ID to be deleted
   const [editingQuantity, setEditingQuantity] = useState(null); // Store the item ID being edited
   const [tempQuantity, setTempQuantity] = useState(""); // Temporary quantity value while editing
@@ -29,6 +31,21 @@ const Cart = ({ isOpen = false, onClose = () => {} }) => {
       image: "/api/placeholder/60/60",
     },
   ]);
+
+  const items = [
+    {
+      name: "Mamiko Bottles",
+      price: 1299,
+      quantity: 2,
+      image_urls: [],
+    },
+    {
+      name: "Mamiko Diaper Cream",
+      price: 899,
+      quantity: 1,
+      image_urls: [],
+    },
+  ];
 
   const updateQuantity = (id, newQuantity) => {
     if (newQuantity <= 0) {
@@ -279,16 +296,11 @@ const Cart = ({ isOpen = false, onClose = () => {} }) => {
                   <span>${total.toFixed(2)}</span>
                 </div>
               </div>
-
-              <button className="w-full bg-black text-white py-3 rounded-lg harmonia-regular hover:bg-gray-800 transition-colors">
-                Checkout
-              </button>
+              <CheckoutButton items={items} />
             </div>
           )}
         </div>
       </div>
     </>
   );
-};
-
-export default Cart;
+}
