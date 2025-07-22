@@ -43,7 +43,7 @@ export default function CheckoutButton({ items, cartProducts }) {
 
   return (
     <button
-      className="w-full bg-[#b1d5ed] text-white py-3 rounded-lg harmonia-regular hover:bg-gray-800 transition-colors"
+      className="w-full bg-[#b1d5ed] text-white py-3 rounded-lg hover:bg-gray-800 transition-colors"
       onClick={handleCheckout}
       disabled={loading}
     >

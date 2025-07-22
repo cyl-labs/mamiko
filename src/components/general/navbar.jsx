@@ -28,13 +28,13 @@ const Navbar = ({ user, items, setItems }) => {
   return (
     <>
       <motion.section
-        className="py-6 md:py-8 lg:py-12 px-4 md:px-8 lg:px-16 flex flex-row justify-between text-center items-center"
+        className="py-6 md:py-8 lg:pt-12 lg:pb-2 px-4 md:px-8 lg:px-16 flex flex-row justify-between text-center items-center"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* Left side - Logo and Desktop Navigation */}
-        <div className="nav-left flex flex-row items-center gap-8 md:gap-16 lg:gap-28">
+        <div className="nav-left flex flex-row items-center gap-12">
           <Link href="/">
             <motion.div
               initial={{ x: -20, opacity: 0 }}
@@ -53,7 +53,7 @@ const Navbar = ({ user, items, setItems }) => {
 
           {/* Desktop Navigation - Hidden on mobile/tablet */}
           <motion.div
-            className="hidden lg:flex flex-row gap-16 text-xl text-center items-center harmonia-regular"
+            className="hidden lg:flex flex-row gap-12 text-xl text-center items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
@@ -66,7 +66,7 @@ const Navbar = ({ user, items, setItems }) => {
                   whileHover={{
                     scale: 1.1,
                   }}
-                  className="cursor-pointer"
+                  className="text-lg cursor-pointer"
                 >
                   {item.name}
                 </motion.p>
@@ -100,7 +100,7 @@ const Navbar = ({ user, items, setItems }) => {
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsCartOpen(true)}
           >
-            <ShoppingCart size={28} className="cursor-pointer md:w-8 md:h-8" />
+            <ShoppingCart size={24} className="cursor-pointer" />
           </motion.div>
 
           {/* Hamburger Menu Button - Only visible on tablet and mobile */}
@@ -166,7 +166,7 @@ const Navbar = ({ user, items, setItems }) => {
                       onClick={closeMobileMenu}
                     >
                       <motion.div
-                        className="text-xl harmonia-regular py-3 border-b border-gray-100 cursor-pointer"
+                        className="text-xl py-3 border-b border-gray-100 cursor-pointer"
                         initial={{ x: 50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: index * 0.1 }}
