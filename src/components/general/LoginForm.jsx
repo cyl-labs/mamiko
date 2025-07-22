@@ -51,7 +51,7 @@ export default function LoginForm() {
     return (
       <Dialog>
         <DialogTrigger>Open</DialogTrigger>
-        <DialogContent className="w-1/3 py-8">
+        <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
           <DialogHeader className="flex flex-col items-center">
             <DialogTitle className="text-xl">Login to Mamiko</DialogTitle>
             <DialogDescription className="">
@@ -127,7 +127,7 @@ export default function LoginForm() {
   return (
     <Dialog>
       <DialogTrigger>Open</DialogTrigger>
-      <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar">
+      <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-xl">Create your account</DialogTitle>
           <DialogDescription className="">

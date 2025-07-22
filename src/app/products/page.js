@@ -34,9 +34,13 @@ export default function Page() {
       setFilteredProducts(data);
     }
   }
-  
+
   async function selectCart() {
-    const { data, error } = await supabase.from("Carts").select("*").eq("uid", user.id).single();
+    const { data, error } = await supabase
+      .from("Carts")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
 
     if (error) console.error(error);
     else {
@@ -73,7 +77,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <Navbar user={user} items={items} setItems={setItems} />
+      <Navbar />
       <div className="w-full flex flex-col px-16 gap-2">
         <h1 className="text-6xl text-[#4065DD] font-bold">Products</h1>
         <p>
@@ -81,11 +85,8 @@ export default function Page() {
           Mamiko’s collection of clean, practical essentials.
         </p>
       </div>
-      <div className="flex mt-12 px-16 gap-16">
-        <ProductsFilters
-          filters={filters}
-          setFilters={setFilters}
-        />
+      <div className="flex flex-col mt-12 px-16 gap-16 md:flex-row max-md:gap-8">
+        <ProductsFilters filters={filters} setFilters={setFilters} />
         <div className="w-full flex flex-col gap-16">
           <ProductsSearch search={search} setSearch={setSearch} />
           <ProductsBody
