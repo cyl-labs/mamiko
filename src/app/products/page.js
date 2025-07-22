@@ -28,16 +28,6 @@ export default function Page() {
     }
   }
 
-  async function selectProducts() {
-    const { data, error } = await supabase.from("Products").select("*");
-    if (error) console.error(error);
-    else {
-      setProducts(data);
-      setFilteredProducts(data);
-      setIsLoading(false);
-    }
-  }
-
   async function selectCart() {
     const { data, error } = await supabase
       .from("Carts")
@@ -48,6 +38,16 @@ export default function Page() {
     if (error) console.error(error);
     else {
       setItems(data.items);
+    }
+  }
+
+  async function selectProducts() {
+    const { data, error } = await supabase.from("Products").select("*");
+    if (error) console.error(error);
+    else {
+      setProducts(data);
+      setFilteredProducts(data);
+      setIsLoading(false);
     }
   }
 
@@ -140,7 +140,7 @@ export default function Page() {
         {/* Header Section */}
         <motion.div
           variants={headerVariants}
-          className="w-full flex flex-col px-16 gap-2"
+          className="w-full flex flex-col px-16 gap-2 max-lg:px-8 max-sm:px-6"
         >
           <motion.h1
             className="text-6xl text-[#4065DD] font-bold"
@@ -161,7 +161,7 @@ export default function Page() {
         </motion.div>
 
         {/* Main Content Section */}
-        <div className="flex mt-12 px-16 gap-16">
+        <div className="flex mt-12 px-16 gap-16 max-md:flex-col max-md:gap-8 max-lg:px-8 max-sm:px-6">
           {/* Filters Sidebar - Reverted to original */}
           <ProductsFilters filters={filters} setFilters={setFilters} />
 

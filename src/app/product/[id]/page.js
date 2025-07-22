@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { React, useState, useEffect } from "react";
 import ProductImages from "@/components/product/ProductImages";
@@ -9,32 +9,65 @@ import Footer from "@/components/general/footer";
 import { supabase } from "@/lib/supabase";
 
 export default function Page({ params }) {
-    const [product, setProduct] = useState();
+  const [product, setProduct] = useState();
+  const [user, setUser] = useState();
+  const [items, setItems] = useState([]);
 
-    async function selectProduct() {
-        const { data, error } = await supabase.from("Products").select('*').eq("id", params.id).single();
-        if (error) console.error(error);
-        else {
-            setProduct(data);
-            console.log(data);
-        }
+  async function selectUser() {
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) console.error(error);
+    else {
+      setUser(data.user);
     }
+  }
 
-    useEffect(() => {
-        selectProduct();
-    }, []);
+  async function selectCart() {
+    const { data, error } = await supabase
+      .from("Carts")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
 
-    return (
-        <Wrapper>
-            <Navbar />
-            <div className="px-16">
-                {/* <ProductSearch /> */}
-                <div className="flex mt-16 gap-16 max-md:flex-col">
-                    <ProductImages product={product} />
-                    <ProductDescription product={product} />
-                </div>
-            </div>
-            <Footer />
-        </Wrapper>
-    );
+    if (error) console.error(error);
+    else {
+      setItems(data.items);
+    }
+  }
+
+  async function selectProduct() {
+    const { data, error } = await supabase
+      .from("Products")
+      .select("*")
+      .eq("id", params.id)
+      .single();
+    if (error) console.error(error);
+    else {
+      setProduct(data);
+      console.log(data);
+    }
+  }
+
+  useEffect(() => {
+    selectUser();
+    selectProduct();
+  }, []);
+
+  useEffect(() => {
+    if (user) selectCart();
+  }, [user]);
+
+  return (
+    <Wrapper>
+      <Navbar user={user} items={items} setItems={setItems} />
+      <div className="px-16 max-lg:px-8 max-sm:px-6">
+        {/* <ProductSearch /> */}
+        <div className="flex mt-16 gap-16 max-md:flex-col">
+          <ProductImages product={product} />
+          <ProductDescription product={product} items={items} setItems={setItems} user={user} />
+        </div>
+      </div>
+      <Footer />
+    </Wrapper>
+  );
 }

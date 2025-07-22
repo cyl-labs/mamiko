@@ -15,12 +15,12 @@ export async function POST(req) {
             name: item.name,
             images: item.image_urls,
           },
-          unit_amount: item.price,
+          unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantity,
       })),
       success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      cancel_url: "http://localhost:3000/",
     });
 
     return NextResponse.json({ url: session.url });

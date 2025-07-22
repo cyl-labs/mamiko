@@ -2,15 +2,34 @@
 
 import { useState } from "react";
 
-export default function CheckoutButton({ items }) {
+export default function CheckoutButton({ items, cartProducts }) {
   const [loading, setLoading] = useState(false);
+
+  function findCartProduct(id) {
+    return cartProducts.find((product) => product.id === id);
+  }
 
   async function handleCheckout() {
     setLoading(true);
+
+    const checkoutItems = items
+      .map((item) => {
+        const product = findCartProduct(item.id);
+        if (!product) return null;
+
+        return {
+          name: product.name,
+          price: product.price,
+          quantity: item.quantity,
+          image_urls: product.image_urls,
+        };
+      })
+      .filter(Boolean);
+
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify({ items: checkoutItems }),
     });
 
     const data = await res.json();
