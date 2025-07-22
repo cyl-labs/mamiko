@@ -205,6 +205,7 @@ export default function Cart({
                 <div className="p-6 space-y-4">
                   {items.map((item) => {
                     const product = findCartProduct(item.id);
+                    if (!product) return null;
 
                     return (
                       <div
@@ -213,11 +214,7 @@ export default function Cart({
                       >
                         <div className="w-15 h-15 bg-[#b1d5ed] rounded flex items-center justify-center">
                           <div className="w-12 h-12 bg-[#e0f0f9] rounded relative">
-                            <Image
-                              src={product?.image_url}
-                              alt=""
-                              fill
-                            />
+                            <Image src={product?.image_url} alt="" fill />
                           </div>
                         </div>
 
@@ -316,12 +313,14 @@ export default function Cart({
                       $
                       {items.reduce((acc, item) => {
                         const product = findCartProduct(item.id);
+                        if (!product) return acc;
+
                         return acc + product?.price * item.quantity;
                       }, 0)}
                     </span>
                   </div>
                 </div>
-                <CheckoutButton items={items} />
+                <CheckoutButton items={items} cartProducts={cartProducts} />
               </div>
             )}
           </div>

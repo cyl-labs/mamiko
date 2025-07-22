@@ -41,7 +41,7 @@ export default function ProductDescription({ product }) {
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
-                <div className="flex gap-8">
+                <div className="flex items-center gap-8 max-sm:flex-col max-sm:items-start">
                     <div className="h-10 flex items-center gap-6">
                         <Button
                             className="h-full bg-[#4065DD] rounded-full shadow-none hover:bg-[#ACB8FE]"
@@ -57,7 +57,7 @@ export default function ProductDescription({ product }) {
                             <Plus />
                         </Button>
                     </div>
-                    <Button className="h-full flex-1 bg-[#4065DD] hover:bg-[#ACB8FE]">Add to cart</Button>
+                    <Button className="h-full flex-1 bg-[#4065DD] hover:bg-[#ACB8FE] max-sm:w-full">Add to cart</Button>
                 </div>
             </div>
         );
