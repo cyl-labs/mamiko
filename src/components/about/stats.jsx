@@ -11,7 +11,7 @@ export default function Stats() {
 
   return (
     <motion.section
-      className="pb-[100px] px-4 sm:px-8 md:px-16 min-h-[400px] sm:min-h-[500px] md:min-h-[600px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[30px] lg:pb-[100px] px-4 sm:px-8 md:px-16 min-h-[400px] sm:min-h-[500px] md:min-h-[600px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -55,7 +55,7 @@ export default function Stats() {
         />
 
         {/* Stats Content */}
-        <div className="absolute inset-0 flex flex-row justify-center items-center z-10 gap-8 sm:gap-16 md:gap-24 lg:gap-36 text-[#4065DD] px-4 sm:px-8">
+        <div className="absolute inset-0 flex sm:flex-row flex-col justify-center items-center z-10 gap-8 sm:gap-16 md:gap-24 lg:gap-36 text-[#4065DD] px-4 sm:px-8">
           {statsData.map((stat, index) => (
             <motion.div
               key={index}

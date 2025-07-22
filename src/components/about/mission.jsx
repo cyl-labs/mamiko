@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Mission() {
   return (
     <motion.section
-      className="px-16 pb-[100px] flex lg:flex-row flex-col-reverse justify-center gap-12 lg:gap-28 items-center max-w-[1600px] mx-auto"
+      className="px-8 md:px-16 pb-[40px] md:pb-[100px] flex md:flex-row flex-col justify-center gap-8 md:gap-12 lg:gap-28 items-center max-w-[1600px] mx-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -48,9 +48,9 @@ export default function Mission() {
           <Image
             alt="Story Image"
             src="/images/mission.png"
-            width={656}
-            height={656}
-            className="rounded-3xl relative z-10 max-w-[544px] aspect-square"
+            width={544}
+            height={544}
+            className="rounded-3xl relative z-10 xl:max-w-[544px] lg:max-w-[480px] max-w-[288px] aspect-square"
           />
         </motion.div>
       </motion.div>
@@ -62,7 +62,7 @@ export default function Mission() {
         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
       >
         <motion.h2
-          className="text-[#E6B724] text-8xl"
+          className="text-[#E6B724] xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-4xl"
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -71,16 +71,16 @@ export default function Mission() {
           <b>私たちの使命</b>
         </motion.h2>
         <motion.div
-          className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-8 py-3 my-8 w-fit"
+          className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-5 md:px-6 py-2 md:py-3 my-4 lg:my-6 xl:my-8 w-fit"
           initial={{ scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
         >
-          <p className="harmonia-bold text-2xl text-[#4065DD]">Our Mission</p>
+          <p className="harmonia-bold md:text-2xl text-md text-[#4065DD]">Our Mission</p>
         </motion.div>
         <motion.p
-          className="text-2xl harmonia-regular"
+          className="xl:text-2xl lg:text-xl md:text-lg text-md harmonia-regular"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}

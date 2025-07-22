@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Grid() {
   return (
     <motion.section
-      className="grid min-h-[720px] grid-cols-5 grid-rows-3 gap-2.5 p-2.5 px-16"
+      className="grid h-[50vw] grid-cols-5 grid-rows-3 gap-2.5 p-2.5 px-4 sm:px-8 md:px-16"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -125,7 +125,7 @@ export default function Grid() {
           }}
         >
           <motion.h2
-            className="text-5xl font-bold text-[#4065DD]"
+            className="lg:text-4xl md:text-3xl sm:text-2xl xs:text-lg text-[12px] font-bold text-[#4065DD]"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
@@ -138,7 +138,7 @@ export default function Grid() {
             Mamiko
           </motion.h2>
           <motion.p
-            className="text-3xl text-[#4c6dd9]"
+            className="lg:text-2xl md:text-xl sm:text-lg xs:text-sm text-[10px] text-[#4c6dd9]"
             initial={{ y: 10, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}

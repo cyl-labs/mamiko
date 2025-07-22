@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function HeroAbout() {
   return (
     <motion.section
-      className="pb-[100px] px-16 min-h-[600px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[40px] md:pb-[100px] px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -48,16 +48,16 @@ export default function HeroAbout() {
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[600px] text-center pb-24">
           <motion.div
-            className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-6 py-3 mb-8"
+            className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-5 md:px-6 py-2 md:py-3 my-4 lg:my-6 xl:my-8 w-fit"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
-            <p className="harmonia-bold text-2xl text-[#4065DD]">About Us</p>
+            <p className="harmonia-bold md:text-2xl text-[#4065DD]">About Us</p>
           </motion.div>
 
           <motion.h2
-            className="text-6xl mb-4 harmonia-bold"
+            className="md:text-6xl xs:text-5xl text-3xl mb-4 harmonia-bold py-2"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
@@ -69,7 +69,7 @@ export default function HeroAbout() {
           </motion.h2>
 
           <motion.h4
-            className="text-2xl harmonia-regular"
+            className="md:text-3xl xs:text-2xl text-xl harmonia-regular py-4"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.3, ease: "easeOut" }}
