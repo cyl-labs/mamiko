@@ -328,7 +328,7 @@ export default function Cart({
                         if (!product) return acc;
 
                         return acc + product?.price * item.quantity;
-                      }, 0)}
+                      }, 0).toFixed(2)}
                     </span>
                   </div>
                 </div>
