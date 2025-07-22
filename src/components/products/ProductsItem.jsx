@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
@@ -27,6 +28,7 @@ export default function ProductsItem({ product, items, setItems, user }) {
       .eq("uid", user.id);
 
     if (error) console.error(error);
+    else toast(`${product.name} has been added to cart!`);
   }
 
   return (

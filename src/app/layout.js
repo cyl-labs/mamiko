@@ -1,5 +1,6 @@
 import { Figtree } from "next/font/google";
 import { DM_Serif_Text } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 
 const figtree = Figtree({
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         className={`${figtree.className} ${dmSerifText.variable} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

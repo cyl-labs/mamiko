@@ -5,6 +5,17 @@ import Image from "next/image";
 import { X, Plus, Minus, ShoppingCart, Trash2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import CheckoutButton from "./CheckoutButton";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "../ui/button";
 
 export default function Cart({
   user,
@@ -48,6 +59,18 @@ export default function Cart({
 
       if (error) console.error(error);
     }
+  }
+
+  async function deleteItem(id) {
+    const newItems = items.filter((item) => item.id !== id);
+    setItems(newItems);
+
+    const { error } = await supabase
+      .from("Carts")
+      .update({ items: newItems })
+      .eq("uid", user.id);
+
+    if (error) console.error(error);
   }
 
   useEffect(() => {
@@ -125,49 +148,6 @@ export default function Cart({
             className="fixed inset-0 bg-black opacity-30 z-40 transition-opacity duration-300"
             onClick={onClose}
           />
-        )}
-
-        {/* Delete Confirmation Modal */}
-        {confirmDelete && (
-          <>
-            <div
-              className="fixed inset-0 bg-black bg-opacity-50 z-60 transition-opacity duration-200"
-              onClick={cancelDelete}
-            />
-            <div className="fixed inset-0 z-70 flex items-center justify-center p-4">
-              <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-4 transform transition-all duration-200 scale-100">
-                <div className="p-6 text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 bg-red-50 rounded-full flex items-center justify-center">
-                    <Trash2 className="w-6 h-6 text-red-500" />
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Remove Item
-                  </h3>
-
-                  <p className="text-gray-500 text-sm mb-6">
-                    Are you sure you want to remove "{itemToDelete?.name}" from
-                    your cart?
-                  </p>
-
-                  <div className="flex space-x-3">
-                    <button
-                      onClick={cancelDelete}
-                      className="flex-1 px-4 py-2.5 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors duration-150"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={() => removeItem(confirmDelete)}
-                      className="flex-1 px-4 py-2.5 text-white bg-red-500 hover:bg-red-600 rounded-lg font-medium transition-colors duration-150"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
         )}
 
         {/* Sidebar */}
@@ -277,13 +257,45 @@ export default function Cart({
                           </button>
                         </div>
 
-                        <button
-                          onClick={() => handleDeleteClick(item.id)}
-                          className="p-1 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors group-hover:opacity-100"
-                          title="Remove item"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <button
+                              className="p-1 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors group-hover:opacity-100"
+                              title="Remove item"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>
+                                Are you absolutely sure?
+                              </DialogTitle>
+                              <DialogDescription>
+                                This action cannot be undone. This will
+                                permanently delete your account and remove your
+                                data from our servers.
+                              </DialogDescription>
+                            </DialogHeader>
+                            <DialogFooter className="">
+                              <DialogClose asChild>
+                                <Button type="button" variant="link">
+                                  Close
+                                </Button>
+                              </DialogClose>
+                              <DialogClose asChild>
+                                <Button
+                                  className="bg-[#ed5471] text-white"
+                                  type="button"
+                                  variant="link"
+                                  onClick={() => deleteItem(item.id)}
+                                >
+                                  Delete
+                                </Button>
+                              </DialogClose>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     );
                   })}

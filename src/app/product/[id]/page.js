@@ -64,7 +64,7 @@ export default function Page({ params }) {
         {/* <ProductSearch /> */}
         <div className="flex mt-16 gap-16 max-md:flex-col">
           <ProductImages product={product} />
-          <ProductDescription product={product} />
+          <ProductDescription product={product} items={items} setItems={setItems} user={user} />
         </div>
       </div>
       <Footer />
