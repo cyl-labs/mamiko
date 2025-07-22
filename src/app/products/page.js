@@ -130,12 +130,11 @@ export default function Page() {
   return (
     <Wrapper>
       <Navbar user={user} items={items} setItems={setItems} />
-
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full"
+        className="w-full mt-16"
       >
         {/* Header Section */}
         <motion.div

@@ -28,7 +28,7 @@ const Navbar = ({ user, items, setItems }) => {
   return (
     <>
       <motion.section
-        className="py-6 md:py-8 lg:py-12 px-4 md:px-8 lg:px-16 flex flex-row justify-between text-center items-center"
+        className="py-6 md:py-8 lg:pt-12 lg:pb-2 px-4 md:px-8 lg:px-16 flex flex-row justify-between text-center items-center"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
