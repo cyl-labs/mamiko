@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function CheckoutButton({ items }) {
   const [loading, setLoading] = useState(false);
-  console.log(items);
 
   async function handleCheckout() {
     setLoading(true);
@@ -25,7 +24,7 @@ export default function CheckoutButton({ items }) {
 
   return (
     <button
-      className="w-full bg-black text-white py-3 rounded-lg harmonia-regular hover:bg-gray-800 transition-colors"
+      className="w-full bg-[#b1d5ed] text-white py-3 rounded-lg harmonia-regular hover:bg-gray-800 transition-colors"
       onClick={handleCheckout}
       disabled={loading}
     >

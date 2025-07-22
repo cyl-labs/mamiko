@@ -1,12 +1,13 @@
 "use client";
-import { CircleUserRound, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import Cart from "@/components/general/cart";
+import LoginForm from "./LoginForm";
 
-const Navbar = () => {
+const Navbar = ({ user, items, setItems }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const navItems = [
@@ -71,7 +72,7 @@ const Navbar = () => {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <CircleUserRound size={32} className="cursor-pointer" />
+            <LoginForm />
           </motion.div>
           <motion.div
             whileHover={{
@@ -85,7 +86,7 @@ const Navbar = () => {
         </motion.div>
       </motion.section>
 
-      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <Cart user={user} items={items} isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} setItems={setItems} />
     </>
   );
 };

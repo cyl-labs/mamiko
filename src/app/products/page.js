@@ -10,10 +10,21 @@ import Footer from "@/components/general/footer";
 import { supabase } from "@/lib/supabase";
 
 export default function Page() {
+  const [user, setUser] = useState();
+  const [items, setItems] = useState([]);
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+
+  async function selectUser() {
+    const { data, error } = await supabase.auth.getUser();
+
+    if (error) console.error(error);
+    else {
+      setUser(data.user);
+    }
+  }
 
   async function selectProducts() {
     const { data, error } = await supabase.from("Products").select("*");
@@ -23,10 +34,24 @@ export default function Page() {
       setFilteredProducts(data);
     }
   }
+  
+  async function selectCart() {
+    const { data, error } = await supabase.from("Carts").select("*").eq("uid", user.id).single();
+
+    if (error) console.error(error);
+    else {
+      setItems(data.items);
+    }
+  }
 
   useEffect(() => {
+    selectUser();
     selectProducts();
   }, []);
+
+  useEffect(() => {
+    if (user) selectCart();
+  }, [user]);
 
   useEffect(() => {
     let filteredProducts = products;
@@ -48,7 +73,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <Navbar />
+      <Navbar user={user} items={items} setItems={setItems} />
       <div className="w-full flex flex-col px-16 gap-2">
         <h1 className="text-6xl text-[#4065DD] font-bold">Products</h1>
         <p>
@@ -66,6 +91,9 @@ export default function Page() {
           <ProductsBody
             products={products}
             filteredProducts={filteredProducts}
+            items={items}
+            setItems={setItems}
+            user={user}
           />
         </div>
       </div>

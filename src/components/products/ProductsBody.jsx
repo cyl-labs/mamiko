@@ -9,10 +9,22 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default function ProductsBody({ products, filteredProducts }) {
+export default function ProductsBody({
+  products,
+  filteredProducts,
+  items,
+  setItems,
+  user,
+}) {
   return (
     <div className="flex flex-col">
-      <ProductsItems products={products} filteredProducts={filteredProducts} />
+      <ProductsItems
+        products={products}
+        filteredProducts={filteredProducts}
+        items={items}
+        setItems={setItems}
+        user={user}
+      />
       <Pagination className="my-12">
         <PaginationContent>
           <PaginationItem>

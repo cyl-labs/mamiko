@@ -4,8 +4,31 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
-export default function ProductsItem({ product }) {
+export default function ProductsItem({ product, items, setItems, user }) {
+  async function updateCart() {
+    const isInCart = items.find((item) => item.id === product.id);
+    let newItems;
+
+    if (isInCart) {
+      newItems = items.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    } else {
+      newItems = [...items, { id: product.id, quantity: 1 }];
+    }
+
+    setItems(newItems);
+
+    const { error } = await supabase
+      .from("Carts")
+      .update({ items: newItems })
+      .eq("uid", user.id);
+
+    if (error) console.error(error);
+  }
+
   return (
     <motion.div
       className="flex flex-col gap-2"
@@ -20,7 +43,10 @@ export default function ProductsItem({ product }) {
             hover: { y: 0, opacity: 1 },
           }}
         >
-          <Button className="w-full bg-[#4065DD] hover:bg-[#ACB8FE]">
+          <Button
+            className="w-full bg-[#4065DD] hover:bg-[#ACB8FE]"
+            onClick={updateCart}
+          >
             Add to cart
           </Button>
         </motion.div>
