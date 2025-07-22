@@ -18,7 +18,7 @@ export default function ProductImages({ product }) {
 
   if (product) {
     return (
-      <div className="w-1/2 flex flex-col gap-4">
+      <div className="w-1/2 flex flex-col gap-4 max-md:w-full">
         <div className="w-full flex rounded-3xl relative aspect-square overflow-hidden">
           <Image src={mainImage} alt="" fill />
         </div>
