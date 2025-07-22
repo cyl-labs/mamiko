@@ -152,13 +152,13 @@ export default function Cart({
 
         {/* Sidebar */}
         <div
-          className={`fixed right-0 top-0 h-full w-[500px] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
+          className={`fixed right-0 top-0 h-full w-screen md:w-[500px] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex flex-col h-full">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+            <div className="flex items-center justify-between px-6 py-4 md:p-6 border-b border-gray-100">
               <div className="flex items-center space-x-3">
                 <ShoppingCart className="w-5 h-5 text-gray-600" />
                 <h2 className="text-lg font-medium text-gray-900">Cart</h2>
@@ -323,12 +323,14 @@ export default function Cart({
                     <span>Total</span>
                     <span>
                       $
-                      {items.reduce((acc, item) => {
-                        const product = findCartProduct(item.id);
-                        if (!product) return acc;
+                      {items
+                        .reduce((acc, item) => {
+                          const product = findCartProduct(item.id);
+                          if (!product) return acc;
 
-                        return acc + product?.price * item.quantity;
-                      }, 0).toFixed(2)}
+                          return acc + product?.price * item.quantity;
+                        }, 0)
+                        .toFixed(2)}
                     </span>
                   </div>
                 </div>

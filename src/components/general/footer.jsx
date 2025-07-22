@@ -154,7 +154,6 @@ export default function Footer() {
             </motion.div>
           ))}
         </div>
-
         <motion.div
           className="footer-right flex flex-col gap-[10px] lg:mr-10 mt-6 lg:mt-0"
           initial={{ x: 30, opacity: 0 }}
@@ -185,30 +184,26 @@ export default function Footer() {
                   ease: "easeOut",
                 }}
               >
-                {social.icon ? (
-                  <social.icon size={social.size} />
-                ) : (
-                  <div className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-7 xl:h-7 relative flex items-center justify-center">
+                <div className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 flex items-center justify-center flex-shrink-0">
+                  {social.icon ? (
+                    <social.icon className="w-full h-full" />
+                  ) : (
                     <Image
                       src={social.image}
-                      width={social.size}
-                      height={social.size}
-                      style={{
-                        objectFit: "contain",
-                        minWidth: `${social.size}px`,
-                        minHeight: `${social.size}px`,
-                      }}
+                      width={24}
+                      height={24}
+                      className="w-full h-full object-contain"
                       alt={social.name}
                     />
-                  </div>
-                )}
-                <p className="harmonia-regular text-sm md:text-md pt-1">
+                  )}
+                </div>
+                <p className="harmonia-regular text-sm md:text-base lg:text-lg leading-none">
                   {social.name}
                 </p>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div>{" "}
       </div>
 
       <motion.div
@@ -227,7 +222,7 @@ export default function Footer() {
         transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
       >
         <motion.p
-          className="harmonia-regular text-lg md:text-xl text-center sm:text-left"
+          className="harmonia-regular text-md md:text-lg text-center sm:text-left"
           initial={{ x: -20, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -236,7 +231,7 @@ export default function Footer() {
           Made by CYL Labs
         </motion.p>
         <motion.div
-          className="harmonia-bold text-lg md:text-2xl flex flex-row gap-8 md:gap-16 justify-center sm:justify-end"
+          className="harmonia-regular text-lg md:text-xl flex flex-row gap-8 md:gap-16 justify-center sm:justify-end"
           initial={{ x: 20, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
