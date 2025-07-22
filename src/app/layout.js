@@ -4,13 +4,13 @@ import "./globals.css";
 
 const figtree = Figtree({
   subsets: ["latin"],
-  weight: ["400", "700"]
+  weight: ["400", "700"],
 });
 
 export const dmSerifText = DM_Serif_Text({
   subsets: ["latin"],
   weight: ["400"],
-  variable: "--font-dm-serif-text"
+  variable: "--font-dm-serif-text",
 });
 
 export const metadata = {

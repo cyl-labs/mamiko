@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { signUp, login, loginWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import { CircleUserRound } from "lucide-react";
 
 export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -50,27 +51,32 @@ export default function LoginForm() {
   if (isLogin) {
     return (
       <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
-        <DialogContent className="w-1/3 py-8">
+        <DialogTrigger>
+          <CircleUserRound size={28} className="cursor-pointer md:w-8 md:h-8" />
+        </DialogTrigger>
+        <DialogContent className="w-[95vw] max-w-md md:w-1/2 lg:w-1/3 py-6 md:py-8 mx-4">
           <DialogHeader className="flex flex-col items-center">
-            <DialogTitle className="text-xl">Login to Mamiko</DialogTitle>
-            <DialogDescription className="">
+            <DialogTitle className="text-lg md:text-xl">
+              Login to Mamiko
+            </DialogTitle>
+            <DialogDescription className="text-sm md:text-base text-center">
               Welcome back! Please Login to continue.
             </DialogDescription>
           </DialogHeader>
           <div className="w-full flex my-4 gap-2">
             <Button
-              className="flex-1 bg-[#b1d5ed] text-[#4065dd]"
+              className="flex-1 bg-[#b1d5ed] text-[#4065dd] h-12 md:h-auto"
               onClick={handleGoogleLogin}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="48"
+                width="24"
+                height="24"
                 viewBox="0 0 48 48"
                 fill="none"
+                className="md:w-8 md:h-8"
               >
-                <g clip-path="url(#clip0_3515_2)">
+                <g clipPath="url(#clip0_3515_2)">
                   <path
                     d="M23.9996 19.6363V28.9309H36.916C36.3488 31.9199 34.6468 34.4509 32.0941 36.1527L39.8831 42.1964C44.4213 38.0075 47.0395 31.8547 47.0395 24.5456C47.0395 22.8438 46.8868 21.2073 46.6031 19.6366L23.9996 19.6363Z"
                     fill="white"
@@ -98,25 +104,37 @@ export default function LoginForm() {
           </div>
           <div className="w-full flex items-center gap-4">
             <div className="h-[1px] flex-1 bg-black"></div>
-            <p>or</p>
+            <p className="text-sm">or</p>
             <div className="h-[1px] flex-1 bg-black"></div>
           </div>
           <div className="w-full flex flex-col gap-2">
-            <p>Email address</p>
-            <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+            <p className="text-sm md:text-base">Email address</p>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="h-10 md:h-auto"
+            />
           </div>
           <div className="w-full flex flex-col gap-2">
-            <p>Password</p>
+            <p className="text-sm md:text-base">Password</p>
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="h-10 md:h-auto"
             />
           </div>
-          <Button className="w-full bg-[#e6b724] my-2" onClick={handleLogin}>
+          <Button
+            className="w-full bg-[#e6b724] my-2 h-10 md:h-auto"
+            onClick={handleLogin}
+          >
             Login
           </Button>
-          <Button variant="link" onClick={() => setIsLogin(false)}>
+          <Button
+            variant="link"
+            onClick={() => setIsLogin(false)}
+            className="text-sm"
+          >
             Don't have an account? Sign up
           </Button>
         </DialogContent>
@@ -126,24 +144,32 @@ export default function LoginForm() {
 
   return (
     <Dialog>
-      <DialogTrigger>Open</DialogTrigger>
-      <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar">
+      <DialogTrigger>
+        <CircleUserRound size={32} className="cursor-pointer md:w-8 md:h-8" />
+      </DialogTrigger>
+      <DialogContent className="w-[95vw] max-w-md md:w-1/2 lg:w-1/3 max-h-[90vh] overflow-y-auto py-6 md:py-8 mx-4 no-scrollbar">
         <DialogHeader className="flex flex-col items-center">
-          <DialogTitle className="text-xl">Create your account</DialogTitle>
-          <DialogDescription className="">
+          <DialogTitle className="text-lg md:text-xl">
+            Create your account
+          </DialogTitle>
+          <DialogDescription className="text-sm md:text-base text-center">
             Welcome! Please fill in your details.
           </DialogDescription>
         </DialogHeader>
         <div className="w-full flex my-4 gap-2">
-          <Button className="flex-1 bg-[#b1d5ed] text-[#4065dd]">
+          <Button
+            className="flex-1 bg-[#b1d5ed] text-[#4065dd] h-12 md:h-auto"
+            onClick={handleGoogleLogin}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
+              width="24"
+              height="24"
               viewBox="0 0 48 48"
               fill="none"
+              className="md:w-8 md:h-8"
             >
-              <g clip-path="url(#clip0_3515_2)">
+              <g clipPath="url(#clip0_3515_2)">
                 <path
                   d="M23.9996 19.6363V28.9309H36.916C36.3488 31.9199 34.6468 34.4509 32.0941 36.1527L39.8831 42.1964C44.4213 38.0075 47.0395 31.8547 47.0395 24.5456C47.0395 22.8438 46.8868 21.2073 46.6031 19.6366L23.9996 19.6363Z"
                   fill="white"
@@ -171,33 +197,46 @@ export default function LoginForm() {
         </div>
         <div className="w-full flex items-center gap-4">
           <div className="h-[1px] flex-1 bg-black"></div>
-          <p>or</p>
+          <p className="text-sm">or</p>
           <div className="h-[1px] flex-1 bg-black"></div>
         </div>
         <div className="w-full flex flex-col gap-2">
-          <p>Email</p>
-          <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+          <p className="text-sm md:text-base">Email</p>
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="h-10 md:h-auto"
+          />
         </div>
         <div className="w-full flex flex-col gap-2">
-          <p>Password</p>
+          <p className="text-sm md:text-base">Password</p>
           <Input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="h-10 md:h-auto"
           />
         </div>
         <div className="w-full flex flex-col gap-2">
-          <p>Confirm password</p>
+          <p className="text-sm md:text-base">Confirm password</p>
           <Input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="h-10 md:h-auto"
           />
         </div>
-        <Button className="w-full bg-[#e6b724] my-2" onClick={handleSignUp}>
+        <Button
+          className="w-full bg-[#e6b724] my-2 h-10 md:h-auto"
+          onClick={handleSignUp}
+        >
           Sign up
         </Button>
-        <Button variant="link" onClick={() => setIsLogin(true)}>
+        <Button
+          variant="link"
+          onClick={() => setIsLogin(true)}
+          className="text-sm"
+        >
           Already have an account? Sign in
         </Button>
       </DialogContent>

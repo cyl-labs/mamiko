@@ -1,5 +1,6 @@
 import Wrapper from "@/components/Wrapper";
 import Navbar from "@/components/general/navbar";
+import Footer from "@/components/general/footer";
 import HomeHero from "@/components/home/HomeHero";
 import HomeWelcome from "@/components/home/HomeWelcome";
 import HomeWhyUs from "@/components/home/HomeWhyUs";
@@ -15,12 +16,11 @@ export default function Home() {
         <HomeWelcome />
         <HomeWhyUs />
         <HomeTrusted />
-        <div className="w-full aspect-square relative">
-          <div className="w-full absolute top-0 max-sm:top-[-20%]">
-            <HomeJoinUs />
-          </div>
+        <div className="w-full sm:aspect-auto aspect-square relative pb-16">
+          <HomeJoinUs />
         </div>
       </div>
+      <Footer />
     </Wrapper>
   );
 }
