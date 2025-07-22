@@ -51,7 +51,7 @@ const centerTextP = {
 export default function Grid() {
   return (
     <motion.section
-      className="min-h-[30vh] md:h-[50vw] p-2.5 px-4 sm:px-8 md:px-16 overflow-x-hidden"
+      className="min-h-[30vh] md:h-[50vw] p-2.5 px-4 sm:px-8 md:px-16 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
