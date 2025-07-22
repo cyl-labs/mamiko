@@ -1,7 +1,6 @@
 "use client"
 
 import { React, useState, useEffect } from "react";
-import ProductSearch from "@/components/product/ProductSearch";
 import ProductImages from "@/components/product/ProductImages";
 import ProductDescription from "@/components/product/ProductDescription";
 import Wrapper from "@/components/Wrapper";
@@ -30,7 +29,7 @@ export default function Page({ params }) {
             <Navbar />
             <div className="px-16">
                 {/* <ProductSearch /> */}
-                <div className="flex mt-16 gap-16">
+                <div className="flex mt-16 gap-16 max-md:flex-col">
                     <ProductImages product={product} />
                     <ProductDescription product={product} />
                 </div>

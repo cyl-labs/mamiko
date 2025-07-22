@@ -23,7 +23,7 @@ export default function ProductDescription({ product }) {
 
     if (product) {
         return (
-            <div className="w-1/2 flex flex-col gap-8">
+            <div className="w-1/2 flex flex-col gap-8 max-md:w-full">
                 <h1 className="text-5xl font-bold">{product.name}</h1>
                 <p className="text-3xl">${product.price.toFixed(2)} SGD</p>
                 <p>Mamiko Pure Water Baby Wipes are specially designed for newborns and babies with sensitive skin. These wipes will leave your baby feeling clean and comfortable without irritating their skin with each use, providing a gentle and safe cleansing experience for both mother and baby.</p>

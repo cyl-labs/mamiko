@@ -54,7 +54,7 @@ export default function LoginForm() {
         <DialogTrigger>
           <CircleUserRound size={28} className="cursor-pointer md:w-8 md:h-8" />
         </DialogTrigger>
-        <DialogContent className="w-[95vw] max-w-md md:w-1/2 lg:w-1/3 py-6 md:py-8 mx-4">
+        <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
           <DialogHeader className="flex flex-col items-center">
             <DialogTitle className="text-lg md:text-xl">
               Login to Mamiko
@@ -147,7 +147,7 @@ export default function LoginForm() {
       <DialogTrigger>
         <CircleUserRound size={32} className="cursor-pointer md:w-8 md:h-8" />
       </DialogTrigger>
-      <DialogContent className="w-[95vw] max-w-md md:w-1/2 lg:w-1/3 max-h-[90vh] overflow-y-auto py-6 md:py-8 mx-4 no-scrollbar">
+      <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-lg md:text-xl">
             Create your account
