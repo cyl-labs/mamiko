@@ -32,7 +32,7 @@ export default function Stats() {
           className="absolute inset-0 w-full h-full object-cover rounded-3xl"
           alt="About Hero Image"
         />
-
+        
         {/* Glow effect */}
         <motion.div
           className="absolute rounded-3xl"
@@ -53,50 +53,143 @@ export default function Stats() {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
         />
-
+        
         {/* Stats Content */}
-        <div className="absolute inset-0 flex sm:flex-row flex-col justify-center items-center z-10 gap-8 sm:gap-16 md:gap-24 lg:gap-36 text-[#4065DD] px-4 sm:px-8">
-          {statsData.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="flex flex-col items-center text-center"
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                delay: 0.6 + stat.delay,
-                ease: "easeOut",
-              }}
-            >
-              <motion.h2
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-3 md:mb-4 harmonia-bold"
-                initial={{ scale: 0.5, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.8 + stat.delay,
-                  ease: "easeOut",
-                }}
-              >
-                {stat.number}
-              </motion.h2>
-              <motion.p
-                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl harmonia-regular leading-tight"
-                initial={{ y: 20, opacity: 0 }}
+        <div className="absolute inset-0 z-10 text-[#4065DD] px-4 sm:px-8">
+          {/* Responsive rows */}
+          <div className="flex flex-col justify-center items-center h-full sm:hidden">
+            {/* 2 stats */}
+            <div className="flex justify-center items-center gap-8 mb-4">
+              {statsData.slice(0, 2).map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="flex flex-col items-center text-center"
+                  initial={{ y: 50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.6 + stat.delay,
+                    ease: "easeOut",
+                  }}
+                >
+                  <motion.h2
+                    className="text-4xl mb-2 harmonia-bold"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.8 + stat.delay,
+                      ease: "easeOut",
+                    }}
+                  >
+                    {stat.number}
+                  </motion.h2>
+                  <motion.p
+                    className="text-sm harmonia-regular leading-tight"
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 1 + stat.delay,
+                      ease: "easeOut",
+                    }}
+                  >
+                    {stat.label}
+                  </motion.p>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Third stat */}
+            <div className="flex justify-center items-center">
+              <motion.div
+                className="flex flex-col items-center text-center"
+                initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 0.5,
-                  delay: 1 + stat.delay,
+                  duration: 0.8,
+                  delay: 0.6 + statsData[2].delay,
                   ease: "easeOut",
                 }}
               >
-                {stat.label}
-              </motion.p>
-            </motion.div>
-          ))}
+                <motion.h2
+                  className="text-4xl mb-2 harmonia-bold"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.8 + statsData[2].delay,
+                    ease: "easeOut",
+                  }}
+                >
+                  {statsData[2].number}
+                </motion.h2>
+                <motion.p
+                  className="text-sm harmonia-regular leading-tight"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 1 + statsData[2].delay,
+                    ease: "easeOut",
+                  }}
+                >
+                  {statsData[2].label}
+                </motion.p>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Desktop View */}
+          <div className="hidden sm:flex justify-center items-center h-full gap-8 sm:gap-16 md:gap-24 lg:gap-36">
+            {statsData.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="flex flex-col items-center text-center"
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.6 + stat.delay,
+                  ease: "easeOut",
+                }}
+              >
+                <motion.h2
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 md:mb-4 harmonia-bold"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.8 + stat.delay,
+                    ease: "easeOut",
+                  }}
+                >
+                  {stat.number}
+                </motion.h2>
+                <motion.p
+                  className="text-base md:text-lg lg:text-xl xl:text-2xl harmonia-regular leading-tight"
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 1 + stat.delay,
+                    ease: "easeOut",
+                  }}
+                >
+                  {stat.label}
+                </motion.p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </motion.section>

@@ -52,7 +52,7 @@ export default function Footer() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="mt-16 md:mt-24 lg:mt-32"
+      className="mt-16 md:mt-24 lg:mt-32 overflow-x-hidden"
     >
       <motion.div
         className="footer-line h-0.5 bg-gray-500 w-full"
@@ -188,7 +188,7 @@ export default function Footer() {
                 {social.icon ? (
                   <social.icon size={social.size} />
                 ) : (
-                  <div className="w-6 h-6 md:w-7 md:h-7 relative flex items-center justify-center">
+                  <div className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-7 xl:h-7 relative flex items-center justify-center">
                     <Image
                       src={social.image}
                       width={social.size}
