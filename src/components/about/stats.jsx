@@ -11,14 +11,14 @@ export default function Stats() {
 
   return (
     <motion.section
-      className="pb-[100px] px-16 min-h-[600px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[100px] px-4 sm:px-8 md:px-16 min-h-[400px] sm:min-h-[500px] md:min-h-[600px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <motion.div
-        className="relative min-h-[500px] rounded-3xl overflow-visible"
+        className="relative min-h-[350px] sm:min-h-[400px] md:min-h-[500px] rounded-3xl overflow-visible"
         initial={{ scale: 0.95, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -55,11 +55,11 @@ export default function Stats() {
         />
 
         {/* Stats Content */}
-        <div className="absolute inset-0 flex flex-row justify-center items-center z-10 gap-36 text-[#4065DD]">
+        <div className="absolute inset-0 flex flex-row justify-center items-center z-10 gap-8 sm:gap-16 md:gap-24 lg:gap-36 text-[#4065DD] px-4 sm:px-8">
           {statsData.map((stat, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center text-center"
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -70,7 +70,7 @@ export default function Stats() {
               }}
             >
               <motion.h2
-                className="text-8xl mb-4 harmonia-bold"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-3 md:mb-4 harmonia-bold"
                 initial={{ scale: 0.5, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
@@ -83,7 +83,7 @@ export default function Stats() {
                 {stat.number}
               </motion.h2>
               <motion.p
-                className="text-2xl harmonia-regular"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl harmonia-regular leading-tight"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
