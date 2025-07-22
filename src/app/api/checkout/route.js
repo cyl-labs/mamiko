@@ -15,7 +15,7 @@ export async function POST(req) {
             name: item.name,
             images: item.image_urls,
           },
-          unit_amount: item.price,
+          unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantity,
       })),

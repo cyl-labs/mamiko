@@ -19,7 +19,7 @@ export default function ProductsItems({
   }
 
   return (
-    <div className="grid grid-cols-4 gap-8 max-md:grid-cols-3">
+    <div className="grid grid-cols-4 gap-8 max-md:grid-cols-3 max-sm:grid-cols-2">
       {filteredProducts.map((product, index) => {
         return (
           <ProductsItem

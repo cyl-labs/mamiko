@@ -68,7 +68,7 @@ export default function ProductsItem({ product, items, setItems, user }) {
         </Link>
       </motion.div>
       <Link href={`/product/${product.id}`}>
-        <motion.div className="flex flex-col text-lg gap-2" whileHover="hover">
+        <motion.div className="flex flex-col text-lg gap-2 max-sm:text-base" whileHover="hover">
           <h3>{product.name}</h3>
           <p>${product.price.toFixed(2)} SGD</p>
         </motion.div>
