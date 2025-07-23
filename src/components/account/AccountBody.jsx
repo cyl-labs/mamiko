@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "../ui/input";
+import AccountOrder from "./AccountOrder";
 
 export default function AccountBody({ mode }) {
   if (mode === "Account Details") {
@@ -43,6 +44,24 @@ export default function AccountBody({ mode }) {
                 <Input value="test@gmail.com" />
               </div>
             </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (mode === "Orders") {
+    return (
+      <div className="w-full flex flex-col gap-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Orders</CardTitle>
+            <CardDescription>
+              Track all your previous orders with Mamiko.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-8">
+            <AccountOrder />
           </CardContent>
         </Card>
       </div>
