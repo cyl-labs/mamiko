@@ -52,7 +52,7 @@ export default function LoginForm() {
     return (
       <Dialog>
         <DialogTrigger className="flex items-center">
-          <CircleUserRound size={24} className="cursor-pointer" />
+          <Button variant="link">Login</Button>
         </DialogTrigger>
         <DialogContent className="w-1/3 max-h-[95vh] overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
           <DialogHeader className="flex flex-col items-center">

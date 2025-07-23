@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/dialog";
 import { CircleUserRound, ShoppingBag, LogOut } from "lucide-react";
 import { signOut } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 export default function AccountSide({ mode, setMode }) {
+  const router = useRouter();
+
   async function handleLogOut() {
     const error = await signOut();
 
@@ -74,7 +77,7 @@ export default function AccountSide({ mode, setMode }) {
                   type="button"
                   onClick={handleLogOut}
                 >
-                  Delete
+                  Log out
                 </Button>
               </DialogClose>
             </DialogFooter>

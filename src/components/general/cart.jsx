@@ -37,7 +37,9 @@ export default function Cart({
       .in("id", ids);
 
     if (error) console.error(error);
-    else setCartProducts(data);
+    else {
+      setCartProducts(data);
+    }
   }
 
   function findCartProduct(id) {
@@ -74,7 +76,15 @@ export default function Cart({
   }
 
   useEffect(() => {
-    if (items) {
+    if (!user) {
+      const guestCart = localStorage.getItem("guestCart");
+      const guestItems = guestCart ? JSON.parse(guestCart) : [];
+      setItems(guestItems);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (items && items.length > 0) {
       selectCartProducts();
     }
   }, [items]);
@@ -334,7 +344,11 @@ export default function Cart({
                     </span>
                   </div>
                 </div>
-                <CheckoutButton user={user} items={items} cartProducts={cartProducts} />
+                <CheckoutButton
+                  user={user}
+                  items={items}
+                  cartProducts={cartProducts}
+                />
               </div>
             )}
           </div>

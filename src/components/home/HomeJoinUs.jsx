@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HomeJoinUs() {
   return (
@@ -38,8 +39,11 @@ export default function HomeJoinUs() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true, amount: 0.5 }}
+            className="relative z-10"
           >
-            <Button className="z-10">Learn more</Button>
+            <Link href="/about">
+              <Button className="cursor-pointer">Learn more</Button>
+            </Link>
           </motion.div>
           <motion.div className="w-3/5 absolute left-[-30%] top-[-55%] rotate-330 aspect-square max-sm:w-2/3 max-sm:left-[-30%] max-sm:top-[-30%]">
             <Image src="/images/wipes.png" alt="" fill />
