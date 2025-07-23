@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 
 export default function HomeHero() {
   return (
-    <div className="relative mt-16">
-      <div className="bg-[#e0f0f9] rounded-3xl relative overflow-hidden aspect-[13/6] z-10 max-sm:aspect-square">
+    <div className="relative mt-16 max-sm:mt-12">
+      <div className="bg-[#e0f0f9] rounded-3xl relative overflow-hidden aspect-[13/6] z-10 max-sm:aspect-[4/5] max-sm:w-full">
         <div className="w-full h-full relative">
           <motion.div
-            className="w-1/3 absolute right-1/5 bottom-[-20%] aspect-[2/3] z-10 max-sm:w-1/2 max-sm:bottom-[-20%]"
+            className="w-1/3 absolute right-1/5 bottom-[-20%] aspect-[2/3] z-10 max-sm:w-1/2 max-sm:w-3/5 max-sm:bottom-[-15%]"
             initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.5 }}
@@ -23,12 +23,12 @@ export default function HomeHero() {
             transition={{ delay: 0.3 }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            <div className="w-1/4 absolute right-[-5%] bottom-[-20%] aspect-[3/4] rotate-340 max-sm:w-1/3 max-sm:right-[-10%] max-sm:bottom-[-10%]">
+            <div className="w-1/4 absolute right-[-5%] bottom-[-20%] aspect-[3/4] rotate-340 max-sm:hidden">
               <Image src="/images/hero-octopus.png" alt="" fill />
             </div>
           </motion.div>
           <motion.div
-            className="w-2/5 absolute left-0 bottom-[-30%] aspect-square rotate-5 max-sm:w-3/5 max-sm:left-[-25%] max-sm:bottom-[-15%]"
+            className="w-2/5 absolute left-0 bottom-[-30%] aspect-square rotate-5 max-sm:hidden"
             initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.4 }}
@@ -37,7 +37,7 @@ export default function HomeHero() {
             <Image src="/images/hero-bunnies.png" alt="" fill />
           </motion.div>
           <motion.div
-            className="w-1/2 absolute right-[7%] bottom-[-5%] aspect-[5/4] max-sm:w-2/3 max-sm:bottom-[-15%]"
+            className="w-1/2 absolute right-[7%] bottom-[-5%] aspect-[5/4] max-sm:w-4/5 max-sm:bottom-[-5%] max-sm:right-[5%]"
             initial={{ opacity: 0, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 0.5 }}
@@ -45,9 +45,9 @@ export default function HomeHero() {
           >
             <Image src="/images/hero-shapes.png" alt="" fill />
           </motion.div>
-          <div className="flex flex-col absolute gap-[clamp(0px,1vw,16px)] left-[5%] top-[10%] max-sm:mx-4 max-sm:top-[8%]">
+          <div className="flex flex-col absolute gap-[clamp(0px,1vw,16px)] left-[5%] top-[10%] max-sm:mx-6 max-sm:left-0 max-sm:top-[8%]">
             <motion.h1
-              className="text-6xl font-bold text-[clamp(28px,4vw,64px)]"
+              className="text-6xl font-bold text-[clamp(28px,4vw,64px)] max-sm:text-4xl"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.1 }}
@@ -60,7 +60,7 @@ export default function HomeHero() {
               Everyday
             </motion.h1>
             <motion.p
-              className="w-1/2 text-xl text-[clamp(16px,1.5vw,20px)] max-sm:w-4/5"
+              className="w-1/2 text-xl text-[clamp(16px,1.5vw,20px)] max-sm:w-full"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.2 }}
@@ -71,7 +71,7 @@ export default function HomeHero() {
             </motion.p>
           </div>
           <motion.svg
-            className="w-[3%] absolute right-[43%] top-[48%] rotate-340 max-sm:right-[55%] max-sm:top-[75%]"
+            className="w-[3%] absolute right-[43%] top-[48%] rotate-340 max-sm:w-[5%] max-sm:right-[63%] max-sm:top-[73%]"
             initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.6 }}
@@ -100,7 +100,7 @@ export default function HomeHero() {
             />
           </motion.svg>
           <motion.svg
-            className="w-[3%] absolute right-[21%] top-[60%] rotate-220 max-sm:right-[25%] max-sm:top-[80%]"
+            className="w-[3%] absolute right-[21%] top-[60%] rotate-220 max-sm:w-[5%] max-sm:right-[23%] max-sm:top-[80%]"
             initial={{ opacity: 0, y: -30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.7 }}
@@ -129,7 +129,7 @@ export default function HomeHero() {
             />
           </motion.svg>
           <motion.svg
-            className="w-[2%] absolute left-[50%] top-[55%] max-sm:left-[43%] max-sm:top-[60%]"
+            className="w-[2%] absolute left-[50%] top-[55%] max-sm:w-[4%] max-sm:left-[25%] max-sm:top-[79%]"
             initial={{ opacity: 0, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 0.8 }}
@@ -146,7 +146,7 @@ export default function HomeHero() {
             />
           </motion.svg>
           <motion.svg
-            className="w-[2%] absolute right-[20%] top-[45%] max-sm:right-[22%] max-sm:top-[75%]"
+            className="w-[2%] absolute right-[20%] top-[45%] max-sm:w-[4%] max-sm:right-[20%] max-sm:top-[75%]"
             initial={{ opacity: 0, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 0.9 }}
@@ -163,7 +163,7 @@ export default function HomeHero() {
             />
           </motion.svg>
           <motion.svg
-            className="w-[2%] absolute right-[45%] top-[25%] max-sm:right-[20%] max-sm:top-[70%]"
+            className="w-[2%] absolute right-[45%] top-[25%] max-sm:w-[4%] max-sm:right-[17%] max-sm:top-[67%]"
             initial={{ opacity: 0, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 1 }}
@@ -180,7 +180,7 @@ export default function HomeHero() {
             />
           </motion.svg>
           <motion.svg
-            className="w-[2%] absolute right-[17%] top-[30%] max-sm:right-[18%] max-sm:top-[75%]"
+            className="w-[2%] absolute right-[17%] top-[30%] max-sm:w-[4%] max-sm:right-[12%] max-sm:top-[73%]"
             initial={{ opacity: 0, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 1.1 }}
@@ -197,7 +197,7 @@ export default function HomeHero() {
             />
           </motion.svg>
           <motion.svg
-            className="w-[2%] absolute right-[15%] top-[45%] max-sm:right-[60%] max-sm:top-[80%]"
+            className="w-[2%] absolute right-[15%] top-[45%] max-sm:w-[4%] max-sm:right-[60%] max-sm:top-[55%]"
             initial={{ opacity: 0, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ delay: 1.2 }}
@@ -215,7 +215,7 @@ export default function HomeHero() {
           </motion.svg>
         </div>
       </div>
-      <div className="w-full bg-[#e6b724] rounded-3xl absolute blur-xl aspect-[13/6] top-0 max-sm:aspect-square"></div>
+      <div className="w-full bg-[#e6b724] rounded-3xl absolute blur-xl aspect-[13/6] top-0 max-sm:aspect-[4/5]"></div>
     </div>
   );
 }
