@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function HeroAbout() {
   return (
     <motion.section
-      className="pb-[40px] md:pb-[130px] px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[40px] md:pb-[80px] px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
