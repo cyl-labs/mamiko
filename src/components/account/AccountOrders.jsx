@@ -54,14 +54,21 @@ export default function AccountOrders({ user }) {
         <CardContent className="flex flex-col gap-8">
           {orders.map((order, i) => {
             const total = order.items.reduce((acc, item) => {
-              return acc + (item.price) / 100;
+              return acc + item.price / 100;
             }, 0);
+
+            const date = new Date(order.created_at);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
 
             return (
               <div className="flex flex-col gap-8" key={i}>
                 <div className="flex flex-col gap-2">
                   <h3 className="text-xl">Order {i + 1}</h3>
-                  <p className="text-sm">Order date: 23/7/2025</p>
+                  <p className="text-sm">
+                    Order date: {day}/{month}/{year}
+                  </p>
                 </div>
                 <AccountOrder order={order} products={products} />
                 <p>Total: ${total}</p>

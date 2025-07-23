@@ -74,7 +74,7 @@ export default function Page() {
   if (user) {
     return (
       <Wrapper>
-        <Navbar items={items} />
+        <Navbar user={user} items={items} setItems={setItems} />
         <motion.div
           variants={containerVariants}
           initial="hidden"
