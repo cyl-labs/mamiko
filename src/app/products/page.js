@@ -134,7 +134,7 @@ export default function Page() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full mt-16"
+        className="w-full md:mt-14 mt-4"
       >
         {/* Header Section */}
         <motion.div

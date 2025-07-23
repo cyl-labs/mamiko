@@ -77,10 +77,10 @@ export default function Mission() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
         >
-          <p className="harmonia-bold md:text-2xl text-md text-[#4065DD]">Our Mission</p>
+          <p className="font-bold md:text-2xl text-md text-[#4065DD]">Our Mission</p>
         </motion.div>
         <motion.p
-          className="xl:text-2xl lg:text-xl md:text-lg text-md harmonia-regular"
+          className="xl:text-xl lg:text-lg md:text-md text-md"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}

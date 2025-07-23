@@ -74,7 +74,7 @@ export default function Stats() {
                   }}
                 >
                   <motion.h2
-                    className="text-4xl mb-2 harmonia-bold"
+                    className="text-4xl mb-2 font-bold"
                     initial={{ scale: 0.5, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
@@ -87,7 +87,7 @@ export default function Stats() {
                     {stat.number}
                   </motion.h2>
                   <motion.p
-                    className="text-sm harmonia-regular leading-tight"
+                    className="text-sm font-semibold leading-tight"
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
@@ -117,7 +117,7 @@ export default function Stats() {
                 }}
               >
                 <motion.h2
-                  className="text-4xl mb-2 harmonia-bold"
+                  className="text-4xl mb-2 font-bold"
                   initial={{ scale: 0.5, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
@@ -130,7 +130,7 @@ export default function Stats() {
                   {statsData[2].number}
                 </motion.h2>
                 <motion.p
-                  className="text-sm harmonia-regular leading-tight"
+                  className="text-sm font-semibold leading-tight"
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
@@ -162,7 +162,7 @@ export default function Stats() {
                 }}
               >
                 <motion.h2
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 md:mb-4 harmonia-bold"
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 md:mb-4 font-bold"
                   initial={{ scale: 0.5, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
@@ -175,7 +175,7 @@ export default function Stats() {
                   {stat.number}
                 </motion.h2>
                 <motion.p
-                  className="text-base md:text-lg lg:text-xl xl:text-2xl harmonia-regular leading-tight"
+                  className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold leading-tight"
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}

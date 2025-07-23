@@ -62,7 +62,7 @@ export default function Page({ params }) {
       <Navbar user={user} items={items} setItems={setItems} />
       <div className="px-16 max-lg:px-8 max-sm:px-6">
         {/* <ProductSearch /> */}
-        <div className="flex mt-16 gap-16 max-md:flex-col">
+        <div className="flex md:mt-14 m-4 gap-16 max-md:flex-col">
           <ProductImages product={product} />
           <ProductDescription product={product} items={items} setItems={setItems} user={user} />
         </div>

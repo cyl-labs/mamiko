@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function HeroAbout() {
   return (
     <motion.section
-      className="pb-[40px] md:pb-[100px] px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[40px] md:pb-[130px] px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -53,23 +53,23 @@ export default function HeroAbout() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
-            <p className="harmonia-bold md:text-2xl text-[#4065DD]">About Us</p>
+            <p className="font-bold md:text-2xl text-[#4065DD]">About Us</p>
           </motion.div>
 
           <motion.h2
-            className="md:text-6xl xs:text-5xl text-3xl mb-4 harmonia-bold py-2"
+            className="md:text-6xl xs:text-5xl text-3xl mb-4 font-bold py-2"
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
           >
-            Changing <span className="italic text-[#E6B724]">Little Lives</span>
+            Changing <span className="italic text-[#E6B724] dm-serif-text">Little Lives</span>
             ,
             <br />
             One Product at a Time
           </motion.h2>
 
           <motion.h4
-            className="md:text-3xl xs:text-2xl text-xl harmonia-regular py-4"
+            className="md:text-2xl text-xl font-normal"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.3, ease: "easeOut" }}

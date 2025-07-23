@@ -185,30 +185,6 @@ const Navbar = ({ user, items, setItems }) => {
                     </Link>
                   ))}
 
-                  {/* Mobile Login/Account Link */}
-                  {user ? (
-                    <Link href="/account" onClick={closeMobileMenu}>
-                      <motion.div
-                        className="text-xl py-3 border-b border-gray-100 cursor-pointer flex items-center gap-3"
-                        initial={{ x: 50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: navItems.length * 0.1 }}
-                        whileHover={{ x: 10 }}
-                      >
-                        <CircleUserRound size={20} />
-                        Account
-                      </motion.div>
-                    </Link>
-                  ) : (
-                    <motion.div
-                      className="text-xl py-3 border-b border-gray-100"
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: navItems.length * 0.1 }}
-                    >
-                      <LoginForm />
-                    </motion.div>
-                  )}
                 </div>
               </div>
             </motion.div>
