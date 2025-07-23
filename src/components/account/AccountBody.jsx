@@ -1,16 +1,15 @@
 import { Button } from "../ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "../ui/input";
+import AccountOrders from "./AccountOrders";
 
-export default function AccountBody({ mode }) {
+export default function AccountBody({ user, mode }) {
   if (mode === "Account Details") {
     return (
       <div className="w-full flex flex-col gap-8">
@@ -47,5 +46,9 @@ export default function AccountBody({ mode }) {
         </Card>
       </div>
     );
+  }
+
+  if (mode === "Orders") {
+    return <AccountOrders user={user} />;
   }
 }

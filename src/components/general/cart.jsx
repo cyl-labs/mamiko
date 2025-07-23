@@ -334,7 +334,7 @@ export default function Cart({
                     </span>
                   </div>
                 </div>
-                <CheckoutButton items={items} cartProducts={cartProducts} />
+                <CheckoutButton user={user} items={items} cartProducts={cartProducts} />
               </div>
             )}
           </div>
