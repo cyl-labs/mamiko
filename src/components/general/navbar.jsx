@@ -1,5 +1,5 @@
 "use client";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import { ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -82,17 +82,25 @@ const Navbar = ({ user, items, setItems }) => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          {/* Login - Always visible */}
+          {/* Login/Account */}
           <motion.div
             whileHover={{
               scale: 1.1,
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <LoginForm />
+            {user ? (
+              // If user is logged in, show account link
+              <Link href="/account">
+                <CircleUserRound size={24} className="cursor-pointer" />
+              </Link>
+            ) : (
+              // If user is not logged in, show login form
+              <LoginForm />
+            )}
           </motion.div>
 
-          {/* Cart - Always visible */}
+          {/* Cart */}
           <motion.div
             whileHover={{
               scale: 1.1,
@@ -103,7 +111,7 @@ const Navbar = ({ user, items, setItems }) => {
             <ShoppingCart size={24} className="cursor-pointer" />
           </motion.div>
 
-          {/* Hamburger Menu Button - Only visible on tablet and mobile */}
+          {/* Hamburger Menu */}
           <motion.div
             className="lg:hidden"
             whileHover={{
@@ -176,6 +184,31 @@ const Navbar = ({ user, items, setItems }) => {
                       </motion.div>
                     </Link>
                   ))}
+
+                  {/* Mobile Login/Account Link */}
+                  {user ? (
+                    <Link href="/account" onClick={closeMobileMenu}>
+                      <motion.div
+                        className="text-xl py-3 border-b border-gray-100 cursor-pointer flex items-center gap-3"
+                        initial={{ x: 50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: navItems.length * 0.1 }}
+                        whileHover={{ x: 10 }}
+                      >
+                        <CircleUserRound size={20} />
+                        Account
+                      </motion.div>
+                    </Link>
+                  ) : (
+                    <motion.div
+                      className="text-xl py-3 border-b border-gray-100"
+                      initial={{ x: 50, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: navItems.length * 0.1 }}
+                    >
+                      <LoginForm />
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </motion.div>
