@@ -24,28 +24,47 @@ export default function ProductDescription({ product, items, setItems, user }) {
   }
 
   async function updateCart() {
-    const isInCart = items.find((item) => item.id === product.id);
-    let newItems;
+    if (user) {
+      const isInCart = items.find((item) => item.id === product.id);
+      let newItems;
 
-    if (isInCart) {
-      newItems = items.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + quantity }
-          : item
-      );
+      if (isInCart) {
+        newItems = items.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        newItems = [...items, { id: product.id, quantity: quantity }];
+      }
+
+      setItems(newItems);
+
+      const { error } = await supabase
+        .from("Carts")
+        .update({ items: newItems })
+        .eq("uid", user.id);
+
+      if (error) console.error(error);
+      else toast(`${product.name} has been added to cart!`);
     } else {
-      newItems = [...items, { id: product.id, quantity: quantity }];
+      const guestCart = localStorage.getItem("guestCart");
+      const guestItems = guestCart ? JSON.parse(guestCart) : [];
+      const isInCart = guestItems.find((item) => item.id === product.id);
+      let newItems;
+
+      if (isInCart) {
+        newItems = guestItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        newItems = [...guestItems, { id: product.id, quantity: quantity }];
+      }
+
+      localStorage.setItem("guestCart", JSON.stringify(newItems));
     }
-
-    setItems(newItems);
-
-    const { error } = await supabase
-      .from("Carts")
-      .update({ items: newItems })
-      .eq("uid", user.id);
-
-    if (error) console.error(error);
-    else toast(`${product.name} has been added to cart!`);
   }
 
   if (product) {

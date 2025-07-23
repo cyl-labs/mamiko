@@ -26,10 +26,11 @@ export default function CheckoutButton({ user, items, cartProducts }) {
       })
       .filter(Boolean);
 
+    const uid = user?.id;
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uid: user.id, items: checkoutItems }),
+      body: JSON.stringify({ uid: uid, items: checkoutItems }),
     });
 
     const data = await res.json();

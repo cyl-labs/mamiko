@@ -7,28 +7,49 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
-export default function ProductsItem({ product, items, setItems, user }) {
+export default function ProductsItem({ user, product, items, setItems }) {
   async function updateCart() {
-    const isInCart = items.find((item) => item.id === product.id);
-    let newItems;
+    if (user) {
+      const isInCart = items.find((item) => item.id === product.id);
+      let newItems;
 
-    if (isInCart) {
-      newItems = items.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
+      if (isInCart) {
+        newItems = items.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        newItems = [...items, { id: product.id, quantity: 1 }];
+      }
+
+      setItems(newItems);
+
+      const { error } = await supabase
+        .from("Carts")
+        .update({ items: newItems })
+        .eq("uid", user.id);
+
+      if (error) console.error(error);
+      else toast(`${product.name} has been added to cart!`);
     } else {
-      newItems = [...items, { id: product.id, quantity: 1 }];
+      const guestCart = localStorage.getItem("guestCart");
+      const guestItems = guestCart ? JSON.parse(guestCart) : [];
+      const isInCart = guestItems.find((item) => item.id === product.id);
+      let newItems;
+
+      if (isInCart) {
+        newItems = guestItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        newItems = [...guestItems, { id: product.id, quantity: 1 }];
+      }
+
+      localStorage.setItem("guestCart", JSON.stringify(newItems));
     }
-
-    setItems(newItems);
-
-    const { error } = await supabase
-      .from("Carts")
-      .update({ items: newItems })
-      .eq("uid", user.id);
-
-    if (error) console.error(error);
-    else toast(`${product.name} has been added to cart!`);
   }
 
   return (
@@ -46,7 +67,7 @@ export default function ProductsItem({ product, items, setItems, user }) {
           }}
         >
           <Button
-            className="w-full font-semibold hover:cursor-pointer bg-[#4065DD] hover:bg-[#404bdd]"
+            className="w-full bg-[#4065DD] hover:bg-[#ACB8FE]"
             onClick={updateCart}
           >
             Add to cart

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function HomeTrusted() {
   const ref = useRef(null);
@@ -17,7 +18,7 @@ export default function HomeTrusted() {
   return (
     <div className="mt-32">
       <div className="relative w-full h-[1000px] flex justify-center items-center">
-        <div className="flex flex-col items-center absolute gap-4 top-[25%] z-10">
+        <div className="flex flex-col items-center absolute gap-4 top-[25%] z-20">
           <h3 className="flex flex-col text-5xl font-bold text-center gap-4 max-xl:text-4xl">
             <motion.span
               className="text-[#e6b724] dm-serif-text font-normal"
@@ -51,7 +52,9 @@ export default function HomeTrusted() {
             transition={{ delay: 0.3 }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            <Button className="w-fit mt-4">Store</Button>
+            <Link href="/products">
+              <Button className="w-fit cursor-pointer mt-4">Store</Button>
+            </Link>
           </motion.div>
         </div>
         <motion.div

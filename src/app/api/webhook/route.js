@@ -41,21 +41,32 @@ export async function POST(req) {
         session.id
       );
 
-      const { error } = await supabase.from("Orders").insert({
+      const { insertOrderError } = await supabase.from("Orders").insert({
         stripe_session_id: session.id,
         email: customer.email,
         total: session.amount_total,
         items: lineItems.data.map((item) => ({
           name: item.description,
           quantity: item.quantity,
-          price: item.amount_total
+          price: item.amount_total,
         })),
-        uid: session.metadata.uid
+        uid: session.metadata.uid,
       });
 
-      if (error) console.error("Supabase insert error:", error.message);
+      if (insertOrderError) {
+        console.error(insertError.message);
+      } else {
+        const { clearCartError } = await supabase
+          .from("Carts")
+          .update({ items: [] })
+          .eq("uid", session.metadata.uid);
+
+        if (clearCartError) {
+          console.error(clearCartError.message);
+        }
+      }
     } catch (err) {
-      console.error("Error inserting into Supabase:", err.message);
+      console.error(err.message);
     }
   }
 
