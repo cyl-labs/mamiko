@@ -75,21 +75,21 @@ export default function ProductDescription({ product, items, setItems, user }) {
         <div className="flex items-center gap-8 max-sm:flex-col max-sm:items-start">
           <div className="h-10 flex items-center gap-6">
             <Button
-              className="h-full bg-[#4065DD] rounded-full shadow-none hover:bg-[#ACB8FE]"
+              className="h-full font-semibold hover:cursor-pointer bg-[#4065DD] hover:bg-[#404bdd] rounded-full shadow-none"
               onClick={decrementQuantity}
             >
               <Minus />
             </Button>
             <p>{quantity}</p>
             <Button
-              className="h-full bg-[#4065DD] rounded-full shadow-none hover:bg-[#ACB8FE]"
+              className="h-full font-semibold hover:cursor-pointer bg-[#4065DD] hover:bg-[#404bdd] rounded-full shadow-none"
               onClick={incrementQuantity}
             >
               <Plus />
             </Button>
           </div>
           <Button
-            className="h-full flex-1 bg-[#4065DD] hover:bg-[#ACB8FE] max-sm:w-full"
+            className="h-full flex-1 font-semibold hover:cursor-pointer bg-[#4065DD] hover:bg-[#404bdd] max-sm:w-full"
             onClick={updateCart}
           >
             Add to cart
