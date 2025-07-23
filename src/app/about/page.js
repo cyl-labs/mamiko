@@ -58,7 +58,7 @@ export default function About() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-           className="mt-16"
+           className="md:mt-14 mt-4"
         >
           <HeroAbout />
           <Story />

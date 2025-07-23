@@ -54,7 +54,7 @@ export default function LoginForm() {
         <DialogTrigger className="flex items-center">
           <CircleUserRound size={24} className="cursor-pointer" />
         </DialogTrigger>
-        <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
+        <DialogContent className="w-1/3 max-h-[95vh] overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
           <DialogHeader className="flex flex-col items-center">
             <DialogTitle className="text-lg md:text-xl">
               Login to Mamiko

@@ -46,7 +46,7 @@ export default function ProductsItem({ product, items, setItems, user }) {
           }}
         >
           <Button
-            className="w-full bg-[#4065DD] hover:bg-[#ACB8FE]"
+            className="w-full font-semibold hover:cursor-pointer bg-[#4065DD] hover:bg-[#404bdd]"
             onClick={updateCart}
           >
             Add to cart
@@ -68,7 +68,10 @@ export default function ProductsItem({ product, items, setItems, user }) {
         </Link>
       </motion.div>
       <Link href={`/product/${product.id}`}>
-        <motion.div className="flex flex-col text-lg gap-2 max-sm:text-base" whileHover="hover">
+        <motion.div
+          className="flex flex-col text-lg gap-2 max-sm:text-base"
+          whileHover="hover"
+        >
           <h3>{product.name}</h3>
           <p>${product.price.toFixed(2)} SGD</p>
         </motion.div>
