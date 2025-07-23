@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function CheckoutButton({ items, cartProducts }) {
+export default function CheckoutButton({ user, items, cartProducts }) {
   const [loading, setLoading] = useState(false);
 
   function findCartProduct(id) {
@@ -29,15 +29,12 @@ export default function CheckoutButton({ items, cartProducts }) {
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: checkoutItems }),
+      body: JSON.stringify({ uid: user.id, items: checkoutItems }),
     });
 
     const data = await res.json();
     if (data.url) {
       window.location.href = data.url;
-    } else {
-      alert("Failed to start checkout.");
-      setLoading(false);
     }
   }
 

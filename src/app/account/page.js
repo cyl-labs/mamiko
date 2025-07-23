@@ -104,7 +104,7 @@ export default function Page() {
           </motion.div>
           <div className="flex mt-12 px-16 gap-16 max-md:flex-col max-md:gap-8 max-lg:px-8 max-sm:px-6">
             <AccountSide mode={mode} setMode={setMode} />
-            <AccountBody mode={mode} />
+            <AccountBody user={user} mode={mode} />
           </div>
         </motion.div>
         <Footer />

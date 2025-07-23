@@ -1,17 +1,15 @@
 import { Button } from "../ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "../ui/input";
-import AccountOrder from "./AccountOrder";
+import AccountOrders from "./AccountOrders";
 
-export default function AccountBody({ mode }) {
+export default function AccountBody({ user, mode }) {
   if (mode === "Account Details") {
     return (
       <div className="w-full flex flex-col gap-8">
@@ -51,20 +49,6 @@ export default function AccountBody({ mode }) {
   }
 
   if (mode === "Orders") {
-    return (
-      <div className="w-full flex flex-col gap-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Orders</CardTitle>
-            <CardDescription>
-              Track all your previous orders with Mamiko.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-8">
-            <AccountOrder />
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <AccountOrders user={user} />;
   }
 }

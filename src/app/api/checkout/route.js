@@ -2,7 +2,8 @@ import { stripe } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  const { items } = await req.json();
+  console.log(req)
+  const { uid, items } = await req.json();
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -13,14 +14,18 @@ export async function POST(req) {
           currency: "usd",
           product_data: {
             name: item.name,
-            images: item.image_urls,
+            images: item.image_url
           },
-          unit_amount: Math.round(item.price * 100),
+          unit_amount: Math.round(item.price * 100)
         },
-        quantity: item.quantity,
+        quantity: item.quantity
       })),
       success_url: "http://localhost:3000/success",
       cancel_url: "http://localhost:3000/",
+      customer_creation: "always",
+      metadata: {
+        uid: uid
+      }
     });
 
     return NextResponse.json({ url: session.url });
