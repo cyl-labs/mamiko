@@ -93,7 +93,7 @@ export default function HomeTrusted() {
           />
         </div>
         <motion.div
-          className="h-1/4 absolute left-[20%] bottom-[30%] rotate-350 aspect-[3/4] max-xl:left-[15%] max-md:left-[5%]"
+          className="h-1/4 absolute left-[20%] bottom-[30%] rotate-350 aspect-[3/4] max-xl:left-[15%] max-md:left-[5%] max-sm:h-1/5"
           initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ delay: 0.4 }}
@@ -107,7 +107,7 @@ export default function HomeTrusted() {
           />
         </motion.div>
         <motion.div
-          className="h-1/4 absolute right-[20%] bottom-[30%] rotate-10 aspect-[3/4] max-xl:right-[15%] max-md:right-[5%]"
+          className="h-1/4 absolute right-[20%] bottom-[30%] rotate-10 aspect-[3/4] max-xl:right-[15%] max-md:right-[5%] max-sm:h-1/5"
           initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ delay: 0.5 }}

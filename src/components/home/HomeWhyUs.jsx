@@ -94,7 +94,7 @@ export default function HomeWhyUs() {
             <Image src="/images/why-us-baby.png" alt="" fill />
           </div>
           <motion.div
-            className="w-1/2 absolute aspect-square left-[0%] top-[15%] rotate-310 max-md:left-[-10%]"
+            className="w-1/2 absolute aspect-square left-[0%] top-[15%] rotate-310 max-md:left-[-10%] max-sm:hidden"
             initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.4 }}
@@ -103,7 +103,7 @@ export default function HomeWhyUs() {
             <Image src="/images/bottles.png" alt="" fill />
           </motion.div>
           <motion.div
-            className="w-2/3 absolute aspect-square left-[-10%] bottom-[-25%] rotate-235 max-md:left-[-20%]"
+            className="w-2/3 absolute aspect-square left-[-10%] bottom-[-25%] rotate-235 max-md:left-[-20%] max-sm:hidden"
             initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ delay: 0.5 }}
