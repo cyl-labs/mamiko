@@ -17,6 +17,8 @@ import { CircleUserRound } from "lucide-react";
 
 export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -35,7 +37,7 @@ export default function LoginForm() {
 
   async function handleSignUp() {
     if (password === confirmPassword) {
-      const { error } = await signUp({ email, password });
+      const { error } = await signUp({ email, password, firstName, lastName });
 
       if (error) {
         console.log(error.message);
@@ -58,7 +60,7 @@ export default function LoginForm() {
         <DialogTrigger className="flex items-center">
           <Button variant="link">Login</Button>
         </DialogTrigger>
-        <DialogContent className="max-h-[95vh] overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
+        <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
           <DialogHeader className="flex flex-col items-center">
             <DialogTitle className="text-lg md:text-xl">
               Login to Mamiko
@@ -151,7 +153,7 @@ export default function LoginForm() {
       <DialogTrigger>
         <CircleUserRound size={32} className="cursor-pointer md:w-8 md:h-8" />
       </DialogTrigger>
-      <DialogContent className="w-1/3 h-4/5 overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
+      <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-lg md:text-xl">
             Create your account
@@ -203,6 +205,24 @@ export default function LoginForm() {
           <div className="h-[1px] flex-1 bg-black"></div>
           <p className="text-sm">or</p>
           <div className="h-[1px] flex-1 bg-black"></div>
+        </div>
+        <div className="flex gap-4">
+          <div className="w-full flex flex-col gap-2">
+            <p className="text-sm md:text-base">First name</p>
+            <Input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="h-10 md:h-auto"
+            />
+          </div>
+          <div className="w-full flex flex-col gap-2">
+            <p className="text-sm md:text-base">Last name</p>
+            <Input
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="h-10 md:h-auto"
+            />
+          </div>
         </div>
         <div className="w-full flex flex-col gap-2">
           <p className="text-sm md:text-base">Email</p>

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function HeroAbout() {
   return (
     <motion.section
-      className="pb-[40px] md:pb-[130px] px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
+      className="pb-[40px] md:pb-16 px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -62,7 +62,10 @@ export default function HeroAbout() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
           >
-            Changing <span className="italic text-[#E6B724] dm-serif-text">Little Lives</span>
+            Changing{" "}
+            <span className="text-[#E6B724] font-normal dm-serif-text">
+              Little Lives
+            </span>
             ,
             <br />
             One Product at a Time
