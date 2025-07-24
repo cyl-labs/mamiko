@@ -43,7 +43,7 @@ export default function AccountBody({ user, mode }) {
       newPassword,
     });
 
-    if (error) console.log(error);
+    if (error) console.error(error);
     else toast("Your password has been successfully changed.");
 
     setOldPassword("");

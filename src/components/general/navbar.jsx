@@ -29,6 +29,7 @@ const Navbar = ({ user, items, setItems }) => {
     { name: "Home", link: "/" },
     { name: "Products", link: "/products" },
     { name: "About", link: "/about" },
+    { name: "Account", link: "/account" },
   ];
 
   const toggleMobileMenu = () => {
@@ -119,6 +120,7 @@ const Navbar = ({ user, items, setItems }) => {
               scale: 1.1,
             }}
             whileTap={{ scale: 0.95 }}
+            className="max-lg:hidden"
           >
             {user ? (
               // If user is logged in, show account link
