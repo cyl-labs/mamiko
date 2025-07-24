@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import AccountOrder from "./AccountOrder";
+import { ShoppingBag } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function AccountOrders({ user }) {
@@ -52,31 +53,36 @@ export default function AccountOrders({ user }) {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-8">
-          {orders.map((order, i) => {
-            const total = order.items
-              .reduce((acc, item) => {
-                return acc + item.price / 100;
-              }, 0)
-              .toFixed(2);
+          {orders.length === 0 ? (
+            <div className="flex flex-col items-center justify-center h-full text-gray-500 my-32    ">
+              <ShoppingBag className="w-12 h-12 mb-3 text-gray-300" />
+              <p>You have no previous orders</p>
+            </div>
+          ) : (
+            orders.map((order, i) => {
+              const total = order.items
+                .reduce((acc, item) => acc + item.price / 100, 0)
+                .toFixed(2);
 
-            const date = new Date(order.created_at);
-            const day = date.getDate();
-            const month = date.getMonth() + 1;
-            const year = date.getFullYear();
+              const date = new Date(order.created_at);
+              const day = date.getDate();
+              const month = date.getMonth() + 1;
+              const year = date.getFullYear();
 
-            return (
-              <div className="flex flex-col gap-8" key={i}>
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-xl">Order {i + 1}</h3>
-                  <p className="text-sm">
-                    Order date: {day}/{month}/{year}
-                  </p>
+              return (
+                <div className="flex flex-col gap-8" key={i}>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xl">Order {i + 1}</h3>
+                    <p className="text-sm">
+                      Order date: {day}/{month}/{year}
+                    </p>
+                  </div>
+                  <AccountOrder order={order} products={products} />
+                  <p>Total: ${total}</p>
                 </div>
-                <AccountOrder order={order} products={products} />
-                <p>Total: ${total}</p>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </CardContent>
       </Card>
     </div>
