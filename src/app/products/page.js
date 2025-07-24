@@ -19,6 +19,7 @@ export default function Page() {
   const [sortBy, setSortBy] = useState("");
   const [priceFilter, setPriceFilter] = useState([0, 1000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   async function selectUser() {
@@ -49,13 +50,27 @@ export default function Page() {
     }
   }
 
+  async function selectWishlist() {
+    const { data, error } = await supabase
+      .from("Wishlists")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
+
+    if (error) console.error(error);
+    else setWishlist(data.items);
+  }
+
   useEffect(() => {
     selectUser();
     selectProducts();
   }, []);
 
   useEffect(() => {
-    if (user) selectCart();
+    if (user) {
+      selectCart();
+      selectWishlist();
+    }
   }, [user]);
 
   useEffect(() => {
@@ -253,6 +268,8 @@ export default function Page() {
                     items={items}
                     setItems={setItems}
                     user={user}
+                    wishlist={wishlist}
+                    setWishlist={setWishlist}
                   />
                 </motion.div>
               )}

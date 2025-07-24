@@ -25,13 +25,14 @@ import { toast } from "sonner";
 import AccountOrders from "./AccountOrders";
 import { changePassword } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
+import AccountWishlist from "./AccountWishlist";
 
 export default function AccountBody({ user, mode }) {
   const [profile, setProfile] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [address, setAddress] = useState();
-  const [postalCode, setPostalCode] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [saveDisabled, setSaveDisabled] = useState(true);
@@ -60,10 +61,10 @@ export default function AccountBody({ user, mode }) {
     if (error) console.error(error);
     else {
       setProfile(data);
-      setFirstName(data.first_name);
-      setLastName(data.last_name);
-      setAddress(data.address);
-      setPostalCode(data.postal_code);
+      setFirstName(data.first_name || "");
+      setLastName(data.last_name || "");
+      setAddress(data.address || "");
+      setPostalCode(data.postal_code || "");
     }
   }
 
@@ -275,5 +276,9 @@ export default function AccountBody({ user, mode }) {
 
   if (mode === "Orders") {
     return <AccountOrders user={user} />;
+  }
+
+  if (mode === "Wishlist") {
+    return <AccountWishlist user={user} />;
   }
 }

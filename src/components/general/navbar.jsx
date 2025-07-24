@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "../ui/button";
 import { ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -79,20 +80,56 @@ const Navbar = ({ user, items, setItems }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           >
-            {navItems.map((item, index) => (
-              <Link key={index} href={item.link}>
-                <motion.p
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  whileHover={{
-                    scale: 1.1,
-                  }}
-                  className="text-lg cursor-pointer"
-                >
-                  {item.name}
-                </motion.p>
-              </Link>
-            ))}
+            {navItems.map((item, index) => {
+              if (item.name !== "Account") {
+                return (
+                  <Link key={index} href={item.link}>
+                    <motion.p
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      whileHover={{
+                        scale: 1.1,
+                      }}
+                      className="text-lg cursor-pointer"
+                    >
+                      {item.name}
+                    </motion.p>
+                  </Link>
+                );
+              } else {
+                if (user) {
+                  return (
+                    <Link key={index} href={item.link}>
+                      <motion.p
+                        initial={{ y: -10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        whileHover={{
+                          scale: 1.1,
+                        }}
+                        className="text-lg cursor-pointer"
+                      >
+                        {item.name}
+                      </motion.p>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <LoginForm key={index}>
+                      <motion.p
+                        initial={{ y: -10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        whileHover={{
+                          scale: 1.1,
+                        }}
+                        className="text-lg cursor-pointer"
+                      >
+                        {item.name}
+                      </motion.p>
+                    </LoginForm>
+                  );
+                }
+              }
+            })}
           </motion.div>
         </div>
 
@@ -127,12 +164,23 @@ const Navbar = ({ user, items, setItems }) => {
               <Link className="flex gap-4" href="/account">
                 <CircleUserRound size={24} className="cursor-pointer" />
                 <p>
-                  Hello, <span className="font-bold">{firstName}</span>
+                  Hello, <span className="font-bold text-[#e6b724]">{user.user_metadata?.name || firstName}</span>
                 </p>
               </Link>
             ) : (
               // If user is not logged in, show login form
-              <LoginForm />
+              <LoginForm>
+                <motion.p
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  whileHover={{
+                    scale: 1.1,
+                  }}
+                  className="text-lg cursor-pointer"
+                >
+                  Login
+                </motion.p>
+              </LoginForm>
             )}
           </motion.div>
 

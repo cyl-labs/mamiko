@@ -15,7 +15,7 @@ import { signUp, login, loginWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { CircleUserRound } from "lucide-react";
 
-export default function LoginForm() {
+export default function LoginForm({ children }) {
   const [isLogin, setIsLogin] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -57,9 +57,7 @@ export default function LoginForm() {
   if (isLogin) {
     return (
       <Dialog>
-        <DialogTrigger className="flex items-center">
-          <Button variant="link">Login</Button>
-        </DialogTrigger>
+        <DialogTrigger className="flex items-center">{children}</DialogTrigger>
         <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
           <DialogHeader className="flex flex-col items-center">
             <DialogTitle className="text-lg md:text-xl">

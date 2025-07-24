@@ -7,6 +7,8 @@ export default function ProductsItems({
   items,
   setItems,
   user,
+  wishlist,
+  setWishlist,
 }) {
   if (products.length === 0) {
     return (
@@ -19,7 +21,7 @@ export default function ProductsItems({
   }
 
   return (
-    <div className="grid grid-cols-4 gap-8 max-md:grid-cols-3 max-sm:grid-cols-2">
+    <div className="grid grid-cols-4 gap-8 max-lg:grid-cols-3 max-sm:grid-cols-2">
       {filteredProducts.map((product, index) => {
         return (
           <ProductsItem
@@ -28,6 +30,8 @@ export default function ProductsItems({
             items={items}
             setItems={setItems}
             user={user}
+            wishlist={wishlist}
+            setWishlist={setWishlist}
           />
         );
       })}
