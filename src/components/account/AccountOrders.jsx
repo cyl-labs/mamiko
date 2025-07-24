@@ -25,17 +25,13 @@ export default function AccountOrders({ user }) {
       .eq("uid", user.id);
 
     if (error) console.error(error);
-    else {
-      setOrders(data);
-    }
+    else setOrders(data);
   }
 
   async function selectProducts() {
     const { data, error } = await supabase.from("Products").select("*");
     if (error) console.error(error);
-    else {
-      setProducts(data);
-    }
+    else setProducts(data);
   }
 
   useEffect(() => {

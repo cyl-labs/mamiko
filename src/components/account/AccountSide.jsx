@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { CircleUserRound, ShoppingBag, LogOut } from "lucide-react";
+import { CircleUserRound, ShoppingBag, Heart, LogOut } from "lucide-react";
 import { signOut } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
@@ -29,7 +29,7 @@ export default function AccountSide({ mode, setMode }) {
   return (
     <div className="w-fit flex flex-col md:flex">
       <div className="flex flex-col mt-4 gap-8">
-        <div className="flex flex-col gap-8 max-md:flex-row">
+        <div className="flex flex-col flex-wrap gap-8 max-md:flex-row">
           <div
             className={`flex items-center text-nowrap gap-4 ${
               mode === "Account Details" ? "text-[#e6b724] font-bold" : ""
@@ -47,6 +47,15 @@ export default function AccountSide({ mode, setMode }) {
           >
             <ShoppingBag />
             <h3 className="text-lg">Orders</h3>
+          </div>
+          <div
+            className={`flex items-center text-nowrap gap-4 ${
+              mode === "Wishlist" ? "text-[#e6b724] font-bold" : ""
+            }`}
+            onClick={() => setMode("Wishlist")}
+          >
+            <Heart />
+            <h3 className="text-lg">Wishlist</h3>
           </div>
         </div>
         <Dialog>

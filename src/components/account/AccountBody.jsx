@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import AccountOrders from "./AccountOrders";
 import { changePassword } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
+import AccountWishlist from "./AccountWishlist";
 
 export default function AccountBody({ user, mode }) {
   const [profile, setProfile] = useState();
@@ -275,5 +276,9 @@ export default function AccountBody({ user, mode }) {
 
   if (mode === "Orders") {
     return <AccountOrders user={user} />;
+  }
+
+  if (mode === "Wishlist") {
+    return <AccountWishlist user={user} />
   }
 }

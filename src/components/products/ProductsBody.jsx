@@ -15,6 +15,8 @@ export default function ProductsBody({
   items,
   setItems,
   user,
+  wishlist,
+  setWishlist,
 }) {
   return (
     <div className="flex flex-col">
@@ -24,6 +26,8 @@ export default function ProductsBody({
         items={items}
         setItems={setItems}
         user={user}
+        wishlist={wishlist}
+        setWishlist={setWishlist}
       />
       <Pagination className="my-12">
         <PaginationContent>

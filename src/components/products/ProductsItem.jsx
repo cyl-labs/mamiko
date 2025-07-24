@@ -5,9 +5,17 @@ import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
-export default function ProductsItem({ user, product, items, setItems }) {
+export default function ProductsItem({
+  user,
+  product,
+  items,
+  setItems,
+  wishlist,
+  setWishlist,
+}) {
   async function updateCart() {
     if (user) {
       const isInCart = items.find((item) => item.id === product.id);
@@ -52,6 +60,23 @@ export default function ProductsItem({ user, product, items, setItems }) {
     }
   }
 
+  async function updateWishlist() {
+    const isInWishlist = wishlist.some((item) => item.id === product.id);
+    let newWishlist;
+
+    if (isInWishlist)
+      newWishlist = wishlist.filter((item) => item.id !== product.id);
+    else newWishlist = [...wishlist, { id: product.id }];
+
+    const { error } = await supabase
+      .from("Wishlists")
+      .update({ items: newWishlist })
+      .eq("uid", user.id);
+
+    if (error) console.error(error);
+    else setWishlist(newWishlist);
+  }
+
   return (
     <motion.div
       className="flex flex-col gap-2"
@@ -88,15 +113,41 @@ export default function ProductsItem({ user, product, items, setItems }) {
           </motion.div>
         </Link>
       </motion.div>
-      <Link href={`/product/${product.id}`}>
-        <motion.div
-          className="flex flex-col text-lg gap-2 max-sm:text-base"
-          whileHover="hover"
-        >
-          <h3>{product.name}</h3>
-          <p>${product.price.toFixed(2)} SGD</p>
-        </motion.div>
-      </Link>
+      <div className="flex flex-col gap-1 w-full">
+        <Link href={`/product/${product.id}`}>
+          <motion.div
+            className="flex flex-col text-lg gap-1 max-sm:text-base"
+            whileHover="hover"
+          >
+            <div className="flex justify-between">
+              <h3>{product.name}</h3>
+              <Button
+                variant="link"
+                className="w-7 h-7 !p-0"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  updateWishlist();
+                }}
+              >
+                <motion.div
+                  key={wishlist.some((item) => item.id === product.id)}
+                  whileHover={{ scale: 1.2 }}
+                >
+                  <Heart
+                    className={`min-w-5 min-h-5 transition-colors duration-300 ${
+                      wishlist.some((item) => item.id === product.id)
+                        ? "text-[#ed5471] fill-[#ffbdc0]"
+                        : ""
+                    }`}
+                  />
+                </motion.div>
+              </Button>
+            </div>
+            <p>${product.price.toFixed(2)} SGD</p>
+          </motion.div>
+        </Link>
+      </div>
     </motion.div>
   );
 }
