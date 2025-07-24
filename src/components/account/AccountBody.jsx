@@ -50,7 +50,7 @@ export default function AccountBody({ user, mode }) {
             <CardTitle>Account Details</CardTitle>
             <CardDescription>Manage your profile, your way.</CardDescription>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-8">
+          <CardContent className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
             <div className="flex flex-col gap-2">
               <p>Email</p>
               <Input value="test@gmail.com" disabled />

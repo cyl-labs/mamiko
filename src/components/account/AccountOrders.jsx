@@ -53,9 +53,11 @@ export default function AccountOrders({ user }) {
         </CardHeader>
         <CardContent className="flex flex-col gap-8">
           {orders.map((order, i) => {
-            const total = order.items.reduce((acc, item) => {
-              return acc + item.price / 100;
-            }, 0);
+            const total = order.items
+              .reduce((acc, item) => {
+                return acc + item.price / 100;
+              }, 0)
+              .toFixed(2);
 
             const date = new Date(order.created_at);
             const day = date.getDate();

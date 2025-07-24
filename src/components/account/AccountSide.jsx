@@ -27,25 +27,27 @@ export default function AccountSide({ mode, setMode }) {
   }
 
   return (
-    <div className="w-fit flex flex-col hidden md:flex">
+    <div className="w-fit flex flex-col md:flex">
       <div className="flex flex-col mt-4 gap-8">
-        <div
-          className={`flex items-center text-nowrap gap-4 ${
-            mode === "Account Details" ? "text-[#e6b724] font-bold" : ""
-          }`}
-          onClick={() => setMode("Account Details")}
-        >
-          <CircleUserRound />
-          <h3 className="text-lg">Account Details</h3>
-        </div>
-        <div
-          className={`flex items-center text-nowrap gap-4 ${
-            mode === "Orders" ? "text-[#e6b724] font-bold" : ""
-          }`}
-          onClick={() => setMode("Orders")}
-        >
-          <ShoppingBag />
-          <h3 className="text-lg">Orders</h3>
+        <div className="flex flex-col gap-8 max-md:flex-row">
+          <div
+            className={`flex items-center text-nowrap gap-4 ${
+              mode === "Account Details" ? "text-[#e6b724] font-bold" : ""
+            }`}
+            onClick={() => setMode("Account Details")}
+          >
+            <CircleUserRound />
+            <h3 className="text-lg">Account Details</h3>
+          </div>
+          <div
+            className={`flex items-center text-nowrap gap-4 ${
+              mode === "Orders" ? "text-[#e6b724] font-bold" : ""
+            }`}
+            onClick={() => setMode("Orders")}
+          >
+            <ShoppingBag />
+            <h3 className="text-lg">Orders</h3>
+          </div>
         </div>
         <Dialog>
           <DialogTrigger asChild>
