@@ -1,15 +1,29 @@
 "use client";
+
 import { ShoppingCart, Menu, X, CircleUserRound } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cart from "@/components/general/cart";
 import LoginForm from "./LoginForm";
+import { supabase } from "@/lib/supabase";
 
 const Navbar = ({ user, items, setItems }) => {
+  const [firstName, setFirstName] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  async function selectFirstName() {
+    const { data, error } = await supabase
+      .from("Profiles")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
+
+    if (error) console.error(error);
+    else setFirstName(data.first_name);
+  }
 
   const navItems = [
     { name: "Home", link: "/" },
@@ -24,6 +38,12 @@ const Navbar = ({ user, items, setItems }) => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (user) {
+      selectFirstName();
+    }
+  }, [user]);
 
   return (
     <>
@@ -82,24 +102,6 @@ const Navbar = ({ user, items, setItems }) => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          {/* Login/Account */}
-          <motion.div
-            whileHover={{
-              scale: 1.1,
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {user ? (
-              // If user is logged in, show account link
-              <Link href="/account">
-                <CircleUserRound size={24} className="cursor-pointer" />
-              </Link>
-            ) : (
-              // If user is not logged in, show login form
-              <LoginForm />
-            )}
-          </motion.div>
-
           {/* Cart */}
           <motion.div
             whileHover={{
@@ -109,6 +111,27 @@ const Navbar = ({ user, items, setItems }) => {
             onClick={() => setIsCartOpen(true)}
           >
             <ShoppingCart size={24} className="cursor-pointer" />
+          </motion.div>
+
+          {/* Login/Account */}
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {user ? (
+              // If user is logged in, show account link
+              <Link className="flex gap-4" href="/account">
+                <CircleUserRound size={24} className="cursor-pointer" />
+                <p>
+                  Hello, <span className="font-bold">{firstName}</span>
+                </p>
+              </Link>
+            ) : (
+              // If user is not logged in, show login form
+              <LoginForm />
+            )}
           </motion.div>
 
           {/* Hamburger Menu */}
@@ -184,7 +207,6 @@ const Navbar = ({ user, items, setItems }) => {
                       </motion.div>
                     </Link>
                   ))}
-
                 </div>
               </div>
             </motion.div>

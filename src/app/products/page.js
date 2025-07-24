@@ -23,9 +23,7 @@ export default function Page() {
     const { data, error } = await supabase.auth.getUser();
 
     if (error) console.error(error);
-    else {
-      setUser(data.user);
-    }
+    else setUser(data.user);
   }
 
   async function selectCart() {
@@ -36,9 +34,7 @@ export default function Page() {
       .single();
 
     if (error) console.error(error);
-    else {
-      setItems(data.items);
-    }
+    else setItems(data.items);
   }
 
   async function selectProducts() {
