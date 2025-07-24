@@ -75,7 +75,7 @@ export default function AccountWishlist({ user }) {
             See the items you've saved to your wishlist.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-8">
           {wishlist.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-gray-500 my-32">
               <Heart className="w-12 h-12 mb-3 text-gray-300" />

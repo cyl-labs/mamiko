@@ -164,7 +164,7 @@ const Navbar = ({ user, items, setItems }) => {
               <Link className="flex gap-4" href="/account">
                 <CircleUserRound size={24} className="cursor-pointer" />
                 <p>
-                  Hello, <span className="font-bold">{firstName}</span>
+                  Hello, <span className="font-bold text-[#e6b724]">{user.user_metadata?.name || firstName}</span>
                 </p>
               </Link>
             ) : (
