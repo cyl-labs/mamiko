@@ -282,18 +282,21 @@ export default function Cart({
                                 Are you absolutely sure?
                               </DialogTitle>
                               <DialogDescription>
-                                This action cannot be undone. This will
-                                permanently delete your account and remove your
-                                data from our servers.
+                                This action cannot be undone. This will remove
+                                this item from your cart.
                               </DialogDescription>
                             </DialogHeader>
-                            <DialogFooter className="">
+                            <DialogFooter className="msx-sm:flex max-sm:flex-row max-sm:gap-4">
                               <DialogClose asChild>
-                                <Button type="button" variant="link">
+                                <Button
+                                  className="max-sm:w-1/2"
+                                  type="button"
+                                  variant="link"
+                                >
                                   Close
                                 </Button>
                               </DialogClose>
-                              <DialogClose asChild>
+                              <DialogClose className="max-sm:w-1/2" asChild>
                                 <Button
                                   className="bg-[#ed5471] text-white"
                                   type="button"

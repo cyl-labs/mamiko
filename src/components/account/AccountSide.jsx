@@ -65,13 +65,13 @@ export default function AccountSide({ mode, setMode }) {
                 in to access you account again.
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter>
-              <DialogClose asChild>
+            <DialogFooter className="max-sm:flex max-sm:flex-row max-sm:gap-4">
+              <DialogClose className="max-sm:w-1/2" asChild>
                 <Button type="button" variant="link">
                   Close
                 </Button>
               </DialogClose>
-              <DialogClose asChild>
+              <DialogClose className="max-sm:w-1/2" asChild>
                 <Button
                   className="bg-[#ed5471] text-white"
                   type="button"

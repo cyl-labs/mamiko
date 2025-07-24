@@ -29,6 +29,7 @@ export default function LoginForm() {
       console.log(error.message);
     } else {
       router.push("/products");
+      localStorage.removeItem("guestCart");
     }
   }
 
@@ -45,7 +46,10 @@ export default function LoginForm() {
   }
 
   async function handleGoogleLogin() {
-    loginWithGoogle();
+    const { error } = await loginWithGoogle();
+
+    if (error) console.error(error);
+    else localStorage.removeItem("guestCart");
   }
 
   if (isLogin) {
@@ -54,7 +58,7 @@ export default function LoginForm() {
         <DialogTrigger className="flex items-center">
           <Button variant="link">Login</Button>
         </DialogTrigger>
-        <DialogContent className="w-1/3 max-h-[95vh] overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
+        <DialogContent className="max-h-[95vh] overflow-scroll py-8 no-scrollbar max-lg:w-4/5">
           <DialogHeader className="flex flex-col items-center">
             <DialogTitle className="text-lg md:text-xl">
               Login to Mamiko
