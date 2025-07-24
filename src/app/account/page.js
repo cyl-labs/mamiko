@@ -35,9 +35,7 @@ export default function Page() {
       .single();
 
     if (error) console.error(error);
-    else {
-      setItems(data.items);
-    }
+    else setItems(data.items);
   }
 
   useEffect(() => {
@@ -79,7 +77,7 @@ export default function Page() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-           className="w-full md:mt-14 mt-4"
+          className="w-full md:mt-14 mt-4"
         >
           <motion.div
             variants={headerVariants}

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -23,10 +24,17 @@ import { Input } from "../ui/input";
 import { toast } from "sonner";
 import AccountOrders from "./AccountOrders";
 import { changePassword } from "@/lib/auth";
+import { supabase } from "@/lib/supabase";
 
 export default function AccountBody({ user, mode }) {
+  const [profile, setProfile] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [address, setAddress] = useState();
+  const [postalCode, setPostalCode] = useState();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [saveDisabled, setSaveDisabled] = useState(true);
 
   async function handleChangePassword() {
     const error = await changePassword({
@@ -42,6 +50,71 @@ export default function AccountBody({ user, mode }) {
     setNewPassword("");
   }
 
+  async function selectProfile() {
+    const { data, error } = await supabase
+      .from("Profiles")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
+
+    if (error) console.error(error);
+    else {
+      setProfile(data);
+      setFirstName(data.first_name);
+      setLastName(data.last_name);
+      setAddress(data.address);
+      setPostalCode(data.postal_code);
+    }
+  }
+
+  async function updateProfile() {
+    if (!profile) return;
+
+    const { error } = await supabase
+      .from("Profiles")
+      .update({
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
+        address: address.trim(),
+        postal_code: postalCode.trim(),
+      })
+      .eq("uid", profile.uid)
+      .single();
+
+    if (error) console.error(error);
+    else {
+      setProfile((prev) => ({
+        ...prev,
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
+        address: address.trim(),
+        postal_code: postalCode.trim(),
+      }));
+
+      setFirstName(firstName.trim());
+      setLastName(lastName.trim());
+      setAddress(address.trim());
+      setPostalCode(postalCode.trim());
+      toast.success("Profile updated successfully!");
+    }
+  }
+
+  useEffect(() => {
+    if (user) selectProfile();
+  }, [user]);
+
+  useEffect(() => {
+    if (!profile) return;
+
+    const isUnchanged =
+      profile.first_name === firstName &&
+      profile.last_name === lastName &&
+      profile.address === address &&
+      profile.postal_code === postalCode;
+
+    setSaveDisabled(isUnchanged);
+  }, [firstName, lastName, address, postalCode, profile]);
+
   if (mode === "Account Details") {
     return (
       <div className="w-full flex flex-col gap-8">
@@ -52,14 +125,28 @@ export default function AccountBody({ user, mode }) {
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
             <div className="flex flex-col gap-2">
+              <p>First name</p>
+              <Input
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <p>Last name</p>
+              <Input
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
               <p>Email</p>
-              <Input value="test@gmail.com" disabled />
+              <Input value={user.email} disabled />
             </div>
             <div className="flex flex-col gap-2">
               <p>Password</p>
               {user.app_metadata.provider === "email" ? (
                 <>
-                  <Input value="test@gmail.com" type="password" disabled />
+                  <Input value="************" type="password" disabled />
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button
@@ -156,16 +243,31 @@ export default function AccountBody({ user, mode }) {
             <div className="flex flex-col gap-2">
               <p>Address</p>
               <div className="flex gap-4">
-                <Input value="test@gmail.com" />
+                <Input
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
               </div>
             </div>
             <div className="flex flex-col gap-2">
               <p>Postal Code</p>
               <div className="flex gap-4">
-                <Input value="test@gmail.com" />
+                <Input
+                  value={postalCode}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                />
               </div>
             </div>
           </CardContent>
+          <CardFooter className="flex justify-end">
+            <Button
+              className="bg-[#e6b724]"
+              disabled={saveDisabled}
+              onClick={updateProfile}
+            >
+              Save
+            </Button>
+          </CardFooter>
         </Card>
       </div>
     );
