@@ -14,14 +14,29 @@ import {
 import ProductsFilter from "./ProductsFilter";
 import { supabase } from "@/lib/supabase";
 
-export default function ProductsFilters({ filters, setFilters }) {
+export default function ProductsFilters({
+  filters,
+  priceFilter,
+  setFilters,
+  setPriceFilter,
+}) {
   const [categories, setCategories] = useState();
-  const [range, setRange] = useState([0, 1000]);
+  const [checked, setChecked] = useState(false);
 
   async function selectCategories() {
     const { data, error } = await supabase.from("Categories").select("*");
     if (error) console.error(error);
     else setCategories(data);
+  }
+
+  function addPriceFilter(isChecked) {
+    setChecked(isChecked);
+
+    if (isChecked) {
+      if (!filters.includes("Price")) setFilters([...filters, "Price"]);
+    } else {
+      setFilters(filters.filter((filter) => filter !== "Price"));
+    }
   }
 
   useEffect(() => {
@@ -46,20 +61,23 @@ export default function ProductsFilters({ filters, setFilters }) {
             })}
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-4">
-                <Checkbox className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD]" />
+                <Checkbox
+                  checked={checked}
+                  onCheckedChange={addPriceFilter}
+                  className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD]"
+                />
                 <h3 className="text-lg">Price</h3>
               </div>
               <Slider
-                value={range}
-                onValueChange={setRange}
+                value={priceFilter}
+                onValueChange={setPriceFilter}
                 min={0}
                 max={1000}
                 step={1}
               />
-              <div className="flex justify-between">
-                <p>$0</p>
-                <p>$1000</p>
-              </div>
+              <p>
+                Price: ${priceFilter[0]} - ${priceFilter[1]}
+              </p>
             </div>
           </div>
         </div>
@@ -84,20 +102,23 @@ export default function ProductsFilters({ filters, setFilters }) {
                   })}
                   <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-4">
-                      <Checkbox className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD]" />
+                      <Checkbox
+                        checked={checked}
+                        onCheckedChange={addPriceFilter}
+                        className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD]"
+                      />
                       <h3 className="text-lg">Price</h3>
                     </div>
                     <Slider
-                      value={range}
-                      onValueChange={setRange}
+                      value={priceFilter}
+                      onValueChange={setPriceFilter}
                       min={0}
                       max={1000}
                       step={1}
                     />
-                    <div className="flex justify-between">
-                      <p>$0</p>
-                      <p>$1000</p>
-                    </div>
+                    <p>
+                      Price: ${priceFilter[0]} - ${priceFilter[1]}
+                    </p>
                   </div>
                 </div>
               </SheetHeader>

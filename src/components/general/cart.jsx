@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { X, Plus, Minus, ShoppingCart, Trash2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -28,6 +28,7 @@ export default function Cart({
   const [editingQuantity, setEditingQuantity] = useState(null); // Store the item ID being edited
   const [tempQuantity, setTempQuantity] = useState(""); // Temporary quantity value while editing
   const [cartProducts, setCartProducts] = useState([]);
+  const [profile, setProfile] = useState();
 
   async function selectCartProducts() {
     const ids = items.map((item) => item.id);
@@ -75,6 +76,17 @@ export default function Cart({
     if (error) console.error(error);
   }
 
+  async function selectProfile() {
+    const { data, error } = await supabase
+      .from("Profiles")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
+
+    if (error) console.error(error);
+    else setProfile(data);
+  }
+
   useEffect(() => {
     if (!user) {
       const guestCart = localStorage.getItem("guestCart");
@@ -82,6 +94,10 @@ export default function Cart({
       setItems(guestItems);
     }
   }, []);
+
+  useEffect(() => {
+    if (user) selectProfile();
+  }, [user]);
 
   useEffect(() => {
     if (items && items.length > 0) {
@@ -282,18 +298,21 @@ export default function Cart({
                                 Are you absolutely sure?
                               </DialogTitle>
                               <DialogDescription>
-                                This action cannot be undone. This will
-                                permanently delete your account and remove your
-                                data from our servers.
+                                This action cannot be undone. This will remove
+                                this item from your cart.
                               </DialogDescription>
                             </DialogHeader>
-                            <DialogFooter className="">
+                            <DialogFooter className="msx-sm:flex max-sm:flex-row max-sm:gap-4">
                               <DialogClose asChild>
-                                <Button type="button" variant="link">
+                                <Button
+                                  className="max-sm:w-1/2"
+                                  type="button"
+                                  variant="link"
+                                >
                                   Close
                                 </Button>
                               </DialogClose>
-                              <DialogClose asChild>
+                              <DialogClose className="max-sm:w-1/2" asChild>
                                 <Button
                                   className="bg-[#ed5471] text-white"
                                   type="button"
@@ -346,6 +365,7 @@ export default function Cart({
                 </div>
                 <CheckoutButton
                   user={user}
+                  profile={profile}
                   items={items}
                   cartProducts={cartProducts}
                 />

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function Story() {
   return (
     <motion.section
-      className="overflow-x-hidden px-8 md:px-16 pb-[40px] md:pb-[100px] md:pt-[50px] pt-10 md:pt-0 flex md:flex-row flex-col-reverse justify-between gap-8 md:gap-12 lg:gap-28 items-center max-w-[1600px] mx-auto"
+      className="overflow-x-hidden px-8 md:px-16 pb-[40px] md:pb-[100px] pt-12 flex md:flex-row flex-col-reverse justify-between gap-8 md:gap-12 lg:gap-28 items-center max-w-[1600px] mx-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}

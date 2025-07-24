@@ -53,7 +53,7 @@ export default function HomeTrusted() {
             viewport={{ once: true, amount: 0.5 }}
           >
             <Link href="/products">
-              <Button className="w-fit cursor-pointer mt-4">Store</Button>
+              <Button className="w-fit bg-[#e6b724] cursor-pointer mt-4">Store</Button>
             </Link>
           </motion.div>
         </div>

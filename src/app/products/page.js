@@ -16,6 +16,8 @@ export default function Page() {
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState([]);
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [priceFilter, setPriceFilter] = useState([0, 1000]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,9 +25,7 @@ export default function Page() {
     const { data, error } = await supabase.auth.getUser();
 
     if (error) console.error(error);
-    else {
-      setUser(data.user);
-    }
+    else setUser(data.user);
   }
 
   async function selectCart() {
@@ -36,9 +36,7 @@ export default function Page() {
       .single();
 
     if (error) console.error(error);
-    else {
-      setItems(data.items);
-    }
+    else setItems(data.items);
   }
 
   async function selectProducts() {
@@ -61,22 +59,58 @@ export default function Page() {
   }, [user]);
 
   useEffect(() => {
-    let filteredProducts = products;
+    let newProducts = [...products];
+    const categoryFilters = [...filters].filter((filter) => filter !== "Price");
 
-    if (filters.length > 0) {
-      filteredProducts = filteredProducts.filter((product) =>
-        filters.includes(product.category)
+    if (categoryFilters.length > 0) {
+      newProducts = newProducts.filter((product) =>
+        categoryFilters.includes(product.category)
+      );
+    }
+
+    if (filters.includes("Price")) {
+      newProducts = newProducts.filter(
+        (product) =>
+          Number(product.price) >= priceFilter[0] &&
+          Number(product.price) <= priceFilter[1]
       );
     }
 
     if (search.trim() !== "") {
-      filteredProducts = filteredProducts.filter((product) =>
+      newProducts = newProducts.filter((product) =>
         product.name.toLowerCase().includes(search.trim().toLowerCase())
       );
     }
 
-    setFilteredProducts(filteredProducts);
-  }, [filters, search]);
+    switch (sortBy) {
+      case "Price, High to Low":
+        newProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "Price, Low to High":
+        newProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "Alphabetical, A-Z":
+        newProducts.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "Alphabetical, Z-A":
+        newProducts.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case "Date, Old to New":
+        newProducts.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+        break;
+      case "Date, New to Old":
+        newProducts.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+        break;
+      default:
+        break;
+    }
+
+    setFilteredProducts(newProducts);
+  }, [filters, search, sortBy, priceFilter]);
 
   // Animation variants
   const containerVariants = {
@@ -162,7 +196,12 @@ export default function Page() {
         {/* Main Content Section */}
         <div className="flex mt-12 px-16 gap-16 max-md:flex-col max-md:gap-8 max-lg:px-8 max-sm:px-6">
           {/* Filters Sidebar - Reverted to original */}
-          <ProductsFilters filters={filters} setFilters={setFilters} />
+          <ProductsFilters
+            filters={filters}
+            priceFilter={priceFilter}
+            setFilters={setFilters}
+            setPriceFilter={setPriceFilter}
+          />
 
           {/* Main Content Area */}
           <motion.div
@@ -173,7 +212,12 @@ export default function Page() {
           >
             {/* Search Component */}
             <motion.div variants={itemVariants}>
-              <ProductsSearch search={search} setSearch={setSearch} />
+              <ProductsSearch
+                search={search}
+                sortBy={sortBy}
+                setSearch={setSearch}
+                setSortBy={setSortBy}
+              />
             </motion.div>
 
             {/* Products Body with Loading State */}
