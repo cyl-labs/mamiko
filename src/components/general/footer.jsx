@@ -47,9 +47,26 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Instagram, name: "Instagram", size: 28, link: "https://www.instagram.com/mamikoofficialstore/" },
-    { icon: null, name: "Tiktok", image: "/images/tiktok-logo.png", size: 28, link: "http://www.tiktok.com/@mothersco_indonesia" },
-    { icon: null, name: "Shopee", image: "/images/shopee-logo.svg", size: 28, link: "https://id.shp.ee/iBArLta" },
+    {
+      icon: Instagram,
+      name: "Instagram",
+      size: 28,
+      link: "https://www.instagram.com/mamikoofficialstore/",
+    },
+    {
+      icon: null,
+      name: "Tiktok",
+      image: "/images/tiktok-logo.png",
+      size: 28,
+      link: "http://www.tiktok.com/@mothersco_indonesia",
+    },
+    {
+      icon: null,
+      name: "Shopee",
+      image: "/images/shopee-logo.svg",
+      size: 28,
+      link: "https://id.shp.ee/iBArLta",
+    },
   ];
 
   return (
@@ -142,20 +159,22 @@ export default function Footer() {
                       >
                         <div className="flex flex-col gap-3 pt-4 pb-2 pl-4 text-sm font-medium">
                           {section.items.map((item, itemIndex) => (
-                            <motion.p
-                              key={item}
-                              initial={{ x: -10, opacity: 0 }}
-                              animate={{ x: 0, opacity: 1 }}
-                              exit={{ x: -10, opacity: 0 }}
-                              transition={{
-                                duration: 0.3,
-                                delay: itemIndex * 0.05,
-                                ease: "easeOut",
-                              }}
-                              className="cursor-pointer"
-                            >
-                              {item.name}
-                            </motion.p>
+                            <Link key={itemIndex} href={item.link}>
+                              <motion.p
+                                key={itemIndex}
+                                initial={{ x: -10, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                exit={{ x: -10, opacity: 0 }}
+                                transition={{
+                                  duration: 0.3,
+                                  delay: itemIndex * 0.05,
+                                  ease: "easeOut",
+                                }}
+                                className="cursor-pointer"
+                              >
+                                {item.name}
+                              </motion.p>
+                            </Link>
                           ))}
                         </div>
                       </motion.div>
