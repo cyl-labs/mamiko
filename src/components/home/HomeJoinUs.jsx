@@ -42,7 +42,7 @@ export default function HomeJoinUs() {
             className="relative z-10"
           >
             <Link href="/about">
-              <Button className="bg-[#e6b724] cursor-pointer">Learn more</Button>
+              <Button className="bg-[#e6b724] hover:bg-[#ffcb00] cursor-pointer font-semibold">Learn more</Button>
             </Link>
           </motion.div>
           <motion.div className="w-3/5 absolute left-[-30%] top-[-55%] rotate-330 aspect-square max-sm:w-2/3 max-sm:left-[-30%] max-sm:top-[-20%]">

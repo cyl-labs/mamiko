@@ -42,9 +42,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Instagram, name: "Instagram", size: 28 },
-    { icon: null, name: "Tiktok", image: "/images/tiktok-logo.png", size: 28 },
-    { icon: null, name: "Shopee", image: "/images/shopee-logo.svg", size: 28 },
+    { icon: Instagram, name: "Instagram", size: 28, link: "https://www.instagram.com/mamikoofficialstore/" },
+    { icon: null, name: "Tiktok", image: "/images/tiktok-logo.png", size: 28, link: "http://www.tiktok.com/@mothersco_indonesia" },
+    { icon: null, name: "Shopee", image: "/images/shopee-logo.svg", size: 28, link: "https://id.shp.ee/iBArLta" },
   ];
 
   const navItems = [
@@ -179,8 +179,11 @@ export default function Footer() {
           </motion.p>
           <div className="flex flex-col gap-4 md:gap-6">
             {socialLinks.map((social, index) => (
-              <motion.div
+              <motion.a
                 key={social.name}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex flex-row gap-2 items-center cursor-pointer"
                 initial={{ x: 20, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
@@ -207,7 +210,7 @@ export default function Footer() {
                 <p className="font-medium text-xs md:text-sm leading-none">
                   {social.name}
                 </p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </motion.div>{" "}
