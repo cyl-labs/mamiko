@@ -83,7 +83,7 @@ export default function AccountWishlist({ user }) {
             </div>
           ) : (
             <div className="grid grid-cols-3 gap-8 max-sm:grid-cols-2">
-              {wishlist.map((item) => {
+              {wishlist.map((item, i) => {
                 const product = products.find(
                   (product) => product.id === item.id
                 );
@@ -93,6 +93,7 @@ export default function AccountWishlist({ user }) {
                 return (
                   <motion.div
                     className="flex flex-col gap-2"
+                    key={i}
                     initial="rest"
                     whileHover="hover"
                   >

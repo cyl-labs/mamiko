@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ProductImages({ product }) {
-  const [mainImage, setMainImage] = useState();
+  const [mainImage, setMainImage] = useState("");
 
   function changeImage(image) {
     setMainImage(image);
@@ -27,7 +27,7 @@ export default function ProductImages({ product }) {
             className="flex rounded-xl relative aspect-square overflow-hidden cursor-pointer"
             onClick={() => changeImage(product.image_url)}
           >
-            <Image src={product.image_url} alt="" fill />
+            <Image src={product?.image_url} alt="" fill />
           </div>
           {product.secondary_image_urls.map((image, i) => {
             return (
