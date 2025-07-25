@@ -1,13 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, ChevronDown, ChevronUp } from "lucide-react";
+import { Instagram, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 export default function Footer() {
   const [openSections, setOpenSections] = useState({});
-
   const toggleSection = (sectionTitle) => {
     setOpenSections((prev) => ({
       ...prev,
@@ -18,39 +17,39 @@ export default function Footer() {
   const footerSections = [
     {
       title: "Mamiko",
-      items: ["Account", "About"],
+      items: [
+        { name: "Home", link: "/" },
+        { name: "Products", link: "/products" },
+        { name: "About", link: "/about" },
+        { name: "Account", link: "/account" },
+      ],
     },
     {
       title: "Products",
       items: [
-        "Bottles & Sippy Cups",
-        "Tissues",
-        "Oral Care",
-        "Potty",
-        "Travel & Storage",
+        { name: "Water Bottles", link: "/products" },
+        { name: "Baby Wipes", link: "/products" },
+        { name: "Oral & Grooming Care", link: "/products" },
+        { name: "Feeding & Tableware", link: "/products" },
+        { name: "Potty & Storage", link: "/products" },
+        { name: "Laundry & Bottle Care", link: "/products" },
       ],
     },
-    {
-      title: "Policy",
-      items: [
-        "Terms & Conditions",
-        "FAQ",
-        "Delivery Policy",
-        "Return & Refund Policy",
-      ],
-    },
+    // {
+    //   title: "Policy",
+    //   items: [
+    //     "Terms & Conditions",
+    //     "FAQ",
+    //     "Delivery Policy",
+    //     "Return & Refund Policy",
+    //   ],
+    // },
   ];
 
   const socialLinks = [
     { icon: Instagram, name: "Instagram", size: 28 },
     { icon: null, name: "Tiktok", image: "/images/tiktok-logo.png", size: 28 },
     { icon: null, name: "Shopee", image: "/images/shopee-logo.svg", size: 28 },
-  ];
-
-  const navItems = [
-    { name: "Home", link: "/" },
-    { name: "Products", link: "/products" },
-    { name: "About", link: "/about" },
   ];
 
   return (
@@ -71,95 +70,101 @@ export default function Footer() {
 
       <div className="footer-content px-4 sm:px-8 md:px-12 lg:px-20 py-6 md:py-8 flex flex-col lg:flex-row justify-between gap-8 lg:gap-0">
         <div className="footer-left flex flex-col lg:flex-row gap-6 lg:gap-36 w-full lg:w-auto">
-          {footerSections.map((section, sectionIndex) => (
-            <motion.div
-              key={section.title}
-              className="flex flex-col"
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: 0.4 + sectionIndex * 0.1,
-                ease: "easeOut",
-              }}
-            >
-              {/* Desktop version - always visible */}
-              <div className="hidden lg:flex lg:flex-col lg:gap-2.5">
-                <p className="text-lg md:text-xl font-semibold">
-                  {section.title}
-                </p>
-                <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-md">
-                  {section.items.map((item, itemIndex) => (
-                    <motion.p
-                      key={item}
-                      initial={{ x: -10, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.6 + sectionIndex * 0.1 + itemIndex * 0.05,
-                        ease: "easeOut",
-                      }}
-                      className="cursor-pointer"
-                    >
-                      {item}
-                    </motion.p>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mobile/Tablet version - dropdown */}
-              <div className="lg:hidden">
-                <motion.button
-                  onClick={() => toggleSection(section.title)}
-                  className="w-full flex justify-between items-center py-3 border-b border-gray-200"
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <p className="text-md font-semibold text-left">
+          {footerSections.map((section, sectionIndex) => {
+            return (
+              <motion.div
+                key={sectionIndex}
+                className="flex flex-col"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.4 + sectionIndex * 0.1,
+                  ease: "easeOut",
+                }}
+              >
+                {/* Desktop version - always visible */}
+                <div className="hidden lg:flex lg:flex-col lg:gap-2.5">
+                  <p className="text-lg md:text-xl font-semibold">
                     {section.title}
                   </p>
-                  <motion.div
-                    animate={{ rotate: openSections[section.title] ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <ChevronDown size={24} className="text-gray-600" />
-                  </motion.div>
-                </motion.button>
+                  <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-md">
+                    {section.items.map((item, itemIndex) => (
+                      <Link href={item.link}>
+                        <motion.p
+                          key={itemIndex}
+                          initial={{ x: -10, opacity: 0 }}
+                          whileInView={{ x: 0, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.4,
+                            delay: 0.6 + sectionIndex * 0.1 + itemIndex * 0.05,
+                            ease: "easeOut",
+                          }}
+                          className="cursor-pointer"
+                        >
+                          {item.name}
+                        </motion.p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
 
-                <AnimatePresence>
-                  {openSections[section.title] && (
+                {/* Mobile/Tablet version - dropdown */}
+                <div className="lg:hidden">
+                  <motion.button
+                    onClick={() => toggleSection(section.title)}
+                    className="w-full flex justify-between items-center py-3 border-b border-gray-200"
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <p className="text-md font-semibold text-left">
+                      {section.title}
+                    </p>
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      animate={{
+                        rotate: openSections[section.title] ? 180 : 0,
+                      }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="overflow-hidden"
                     >
-                      <div className="flex flex-col gap-3 pt-4 pb-2 pl-4 text-sm font-medium">
-                        {section.items.map((item, itemIndex) => (
-                          <motion.p
-                            key={item}
-                            initial={{ x: -10, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: -10, opacity: 0 }}
-                            transition={{
-                              duration: 0.3,
-                              delay: itemIndex * 0.05,
-                              ease: "easeOut",
-                            }}
-                            className="cursor-pointer"
-                          >
-                            {item}
-                          </motion.p>
-                        ))}
-                      </div>
+                      <ChevronDown size={24} className="text-gray-600" />
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          ))}
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {openSections[section.title] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="flex flex-col gap-3 pt-4 pb-2 pl-4 text-sm font-medium">
+                          {section.items.map((item, itemIndex) => (
+                            <motion.p
+                              key={item}
+                              initial={{ x: -10, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              exit={{ x: -10, opacity: 0 }}
+                              transition={{
+                                duration: 0.3,
+                                delay: itemIndex * 0.05,
+                                ease: "easeOut",
+                              }}
+                              className="cursor-pointer"
+                            >
+                              {item.name}
+                            </motion.p>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
         <motion.div
           className="footer-right flex flex-col gap-[10px] lg:mr-10 mt-6 lg:mt-0"
@@ -212,15 +217,6 @@ export default function Footer() {
           </div>
         </motion.div>{" "}
       </div>
-
-      <motion.div
-        className="footer-line h-[1.5px] bg-gray-500/50 w-full flex items-center"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-      />
-
       <motion.div
         className="footer-bottom py-4 px-4 sm:px-8 md:px-12 lg:px-20 flex flex-col sm:flex-row justify-between gap-4 sm:gap-0"
         initial={{ y: 20, opacity: 0 }}
@@ -237,31 +233,6 @@ export default function Footer() {
         >
           Made by CYL Labs
         </motion.p>
-        <motion.div
-          className="font-semibold text-md md:text-lg flex flex-row gap-8 md:gap-16 justify-center sm:justify-end"
-          initial={{ x: 20, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.7, ease: "easeOut" }}
-        >
-          {navItems.map((item, index) => (
-            <Link key={index} href={item.link}>
-              <motion.p
-                initial={{ y: 10, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.3,
-                  delay: 0.8 + index * 0.1,
-                  ease: "easeOut",
-                }}
-                className="cursor-pointer"
-              >
-                {item.name}
-              </motion.p>
-            </Link>
-          ))}
-        </motion.div>
       </motion.div>
     </motion.section>
   );
