@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { toast } from "sonner";
 import { signUp, login, loginWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
-import { CircleUserRound } from "lucide-react";
 
 export default function LoginForm({ children }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -22,14 +22,18 @@ export default function LoginForm({ children }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   async function handleLogin() {
+    setIsLoading(true);
     const { error } = await login({ email, password });
+    setIsLoading(false);
 
-    if (error) {
-      console.log(error.message);
-    } else {
+    if (error) setErrorMessage(error.message);
+    else {
       router.push("/products");
       localStorage.removeItem("guestCart");
     }
@@ -37,26 +41,41 @@ export default function LoginForm({ children }) {
 
   async function handleSignUp() {
     if (password === confirmPassword) {
-      const { error } = await signUp({ email, password, firstName, lastName });
+      setIsLoading(true);
+      const { error } = await signUp({
+        email: email.trim(),
+        password: password.trim(),
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+      });
+      setIsLoading(false);
 
-      if (error) {
-        console.log(error.message);
-      } else {
-        router.push("/products");
+      if (error) setErrorMessage(error.message);
+      else {
+        setDialogOpen(false);
+        toast(
+          "Verify your email first before logging in, we just sent you a verification email."
+        );
       }
+    } else {
+      setErrorMessage("Passwords do not match");
     }
   }
 
   async function handleGoogleLogin() {
     const { error } = await loginWithGoogle();
 
-    if (error) console.error(error);
+    if (error) setErrorMessage(error.message);
     else localStorage.removeItem("guestCart");
   }
 
+  useEffect(() => {
+    setErrorMessage("");
+  }, [isLogin]);
+
   if (isLogin) {
     return (
-      <Dialog>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger className="flex items-center">{children}</DialogTrigger>
         <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
           <DialogHeader className="flex flex-col items-center">
@@ -131,9 +150,17 @@ export default function LoginForm({ children }) {
           <Button
             className="w-full bg-[#e6b724] my-2 h-10 md:h-auto"
             onClick={handleLogin}
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </Button>
+          <p
+            className={`text-sm text-[#ed5471] text-center ${
+              errorMessage === "" ? "hidden" : ""
+            }`}
+          >
+            {errorMessage}
+          </p>
           <Button
             variant="link"
             onClick={() => setIsLogin(false)}
@@ -147,10 +174,8 @@ export default function LoginForm({ children }) {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger>
-        <CircleUserRound size={32} className="cursor-pointer md:w-8 md:h-8" />
-      </DialogTrigger>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-lg md:text-xl">
@@ -251,9 +276,17 @@ export default function LoginForm({ children }) {
         <Button
           className="w-full bg-[#e6b724] my-2 h-10 md:h-auto"
           onClick={handleSignUp}
+          disabled={isLoading}
         >
-          Sign up
+          {isLoading ? "Signing up..." : "Sign up"}
         </Button>
+        <p
+          className={`text-sm text-[#ed5471] text-center ${
+            errorMessage === "" ? "hidden" : ""
+          }`}
+        >
+          {errorMessage}
+        </p>
         <Button
           variant="link"
           onClick={() => setIsLogin(true)}

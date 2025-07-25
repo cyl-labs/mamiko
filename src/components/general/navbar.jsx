@@ -140,31 +140,22 @@ const Navbar = ({ user, items, setItems }) => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         >
-          {/* Cart */}
-          <motion.div
-            whileHover={{
-              scale: 1.1,
-            }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsCartOpen(true)}
-          >
-            <ShoppingCart size={24} className="cursor-pointer" />
-          </motion.div>
-
           {/* Login/Account */}
           <motion.div
             whileHover={{
               scale: 1.1,
             }}
             whileTap={{ scale: 0.95 }}
-            className="max-lg:hidden"
           >
             {user ? (
               // If user is logged in, show account link
               <Link className="flex gap-4" href="/account">
                 <CircleUserRound size={24} className="cursor-pointer" />
                 <p>
-                  Hello, <span className="font-bold text-[#e6b724]">{user.user_metadata?.name || firstName}</span>
+                  Hello,{" "}
+                  <span className="font-bold text-[#e6b724]">
+                    {user.user_metadata?.name || firstName}
+                  </span>
                 </p>
               </Link>
             ) : (
@@ -182,6 +173,17 @@ const Navbar = ({ user, items, setItems }) => {
                 </motion.p>
               </LoginForm>
             )}
+          </motion.div>
+
+          {/* Cart */}
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+            }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsCartOpen(true)}
+          >
+            <ShoppingCart size={24} className="cursor-pointer" />
           </motion.div>
 
           {/* Hamburger Menu */}

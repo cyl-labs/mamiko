@@ -4,83 +4,59 @@ import { motion } from "framer-motion";
 
 export default function HeroAbout() {
   return (
-    <motion.section
-      className="pb-[40px] md:pb-16 px-5 sm:px-8 md:px-16 min-h-[200px] rounded-3xl text-[#3D3C3B]"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      <motion.div
-        className="relative min-h-[600px] rounded-3xl overflow-visible"
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-      >
-        {/* Background Image */}
-        <Image
-          src="/images/hero-about.png"
-          width={1312}
-          height={600}
-          className="absolute inset-0 w-full h-full object-cover rounded-3xl"
-          alt="About Hero Image"
-        />
-
-        {/* Glow effect */}
-        <motion.div
-          className="absolute rounded-3xl"
-          style={{
-            top: "0px",
-            left: "0px",
-            right: "0px",
-            bottom: "0px",
-            boxShadow: `
-              0 0 20px rgba(230, 183, 36, 0.4),
-              0 0 40px rgba(230, 183, 36, 0.3),
-              0 0 60px rgba(230, 183, 36, 0.2),
-              inset 0 0 20px rgba(230, 183, 36, 0.1)
-            `,
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-        />
-
-        {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-[600px] text-center pb-24">
+    <div className="relative z-20 mx-8 md:mx-16">
+      <div className="bg-[#e0f0f9] rounded-3xl relative overflow-hidden aspect-[13/6] z-10 max-sm:aspect-[4/5]">
+        <div className="w-full h-full flex flex-col justify-center items-center gap-8">
+          <div className="flex flex-col relative px-4 gap-[clamp(0px,1vw,16px)] z-10">
+            <motion.h1
+              className="text-6xl font-bold text-[clamp(28px,4vw,64px)] text-center"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              Changing{" "}
+              <span className="text-[#e6b724] dm-serif-text font-normal">
+                Little Lives
+              </span>
+              ,
+              <br /> One Product at a Time
+            </motion.h1>
+            <motion.p
+              className="text-xl text-[clamp(16px,1.5vw,20px)] text-center"
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              Join the growing community who choose Mamiko every day.
+            </motion.p>
+          </div>
           <motion.div
-            className="rounded-4xl bg-[#B1D5ED] items-center justify-center flex px-5 md:px-6 py-2 md:py-3 my-4 lg:my-6 xl:my-8 w-fit"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="relative z-10"
           >
-            <p className="font-bold md:text-2xl text-[#4065DD]">About Us</p>
           </motion.div>
-
-          <motion.h2
-            className="md:text-6xl xs:text-5xl text-3xl mb-4 font-bold py-2"
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
-          >
-            Changing{" "}
-            <span className="text-[#E6B724] font-normal dm-serif-text">
-              Little Lives
-            </span>
-            ,
-            <br />
-            One Product at a Time
-          </motion.h2>
-
-          <motion.h4
-            className="md:text-2xl text-xl font-normal"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.3, ease: "easeOut" }}
-          >
-            Join the growing community who choose Mamiko every day
-          </motion.h4>
+          <motion.div className="w-3/5 absolute left-[-30%] top-[-55%] rotate-330 aspect-square max-sm:w-2/3 max-sm:left-[-30%] max-sm:top-[-20%]">
+            <Image src="/images/wipes.png" alt="" fill />
+          </motion.div>
+          <div className="w-1/3 absolute left-[-10%] bottom-[-20%] rotate-40 aspect-square max-sm:w-1/2 max-sm:left-[-20%] max-sm:bottom-[-10%] max-sm:rotate-20">
+            <Image src="/images/bottles.png" alt="" fill />
+          </div>
+          <div className="w-1/2 absolute left-[15%] bottom-[-48%] aspect-square max-sm:w-3/5 max-sm:left-[15%] max-sm:bottom-[-15%]">
+            <Image src="/images/training-cups.png" alt="" fill />
+          </div>
+          <div className="w-3/5 absolute right-[-20%] bottom-[-45%] rotate-330 aspect-square max-sm:w-2/3 max-sm:right-[-30%] max-sm:bottom-[-15%]">
+            <Image src="/images/crocodile.png" alt="" fill />
+          </div>
+          <div className="w-1/2 absolute right-[-20%] top-[-30%] rotate-280 aspect-square max-sm:w-3/5 max-sm:right-[-15%] max-sm:top-[-15%] max-sm:rotate-220">
+            <Image src="/images/training-bottles.png" alt="" fill />
+          </div>
         </div>
-      </motion.div>
-    </motion.section>
+      </div>
+      <div className="w-full bg-[#e6b724] rounded-3xl absolute blur-xl aspect-[13/6] top-0 max-sm:aspect-[4/5]"></div>
+    </div>
   );
 }

@@ -57,24 +57,30 @@ export default function ProductsItem({
       }
 
       localStorage.setItem("guestCart", JSON.stringify(newItems));
+      setItems(newItems);
+      toast(`${product.name} has been added to cart!`);
     }
   }
 
   async function updateWishlist() {
-    const isInWishlist = wishlist.some((item) => item.id === product.id);
-    let newWishlist;
+    if (user) {
+      const isInWishlist = wishlist.some((item) => item.id === product.id);
+      let newWishlist;
 
-    if (isInWishlist)
-      newWishlist = wishlist.filter((item) => item.id !== product.id);
-    else newWishlist = [...wishlist, { id: product.id }];
+      if (isInWishlist)
+        newWishlist = wishlist.filter((item) => item.id !== product.id);
+      else newWishlist = [...wishlist, { id: product.id }];
 
-    const { error } = await supabase
-      .from("Wishlists")
-      .update({ items: newWishlist })
-      .eq("uid", user.id);
+      const { error } = await supabase
+        .from("Wishlists")
+        .update({ items: newWishlist })
+        .eq("uid", user.id);
 
-    if (error) console.error(error);
-    else setWishlist(newWishlist);
+      if (error) console.error(error);
+      else setWishlist(newWishlist);
+    } else {
+      toast("Log in to access your wishlist.");
+    }
   }
 
   return (
