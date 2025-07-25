@@ -61,7 +61,7 @@ export default function Footer() {
       className="mt-16 md:mt-24 lg:mt-32 overflow-hidden"
     >
       <motion.div
-        className="footer-line h-[1.5px] bg-gray-500/50 w-full"
+        className="footer-line h-[1.5px] bg-[#e6b724] w-full"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}

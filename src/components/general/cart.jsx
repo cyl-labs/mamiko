@@ -229,7 +229,7 @@ export default function Cart({
                             {product?.name}
                           </h3>
                           <p className="text-sm text-gray-500">
-                            ${product?.price * item.quantity}
+                            ${(product?.price * item.quantity).toFixed(2)}
                           </p>
                         </div>
 
