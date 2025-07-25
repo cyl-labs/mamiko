@@ -66,6 +66,8 @@ export default function ProductDescription({ product, items, setItems, user }) {
       }
 
       localStorage.setItem("guestCart", JSON.stringify(newItems));
+      setItems(newItems);
+      toast(`${product.name} has been added to cart!`);
     }
   }
 

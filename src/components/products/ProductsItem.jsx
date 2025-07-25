@@ -57,6 +57,8 @@ export default function ProductsItem({
       }
 
       localStorage.setItem("guestCart", JSON.stringify(newItems));
+      setItems(newItems);
+      toast(`${product.name} has been added to cart!`);
     }
   }
 

@@ -178,7 +178,7 @@ export default function Cart({
 
         {/* Sidebar */}
         <div
-          className={`fixed right-0 top-0 h-full w-screen md:w-[500px] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
+          className={`fixed right-0 top-0 h-full w-5/6 md:w-[500px] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
