@@ -91,7 +91,7 @@ export default function Footer() {
                   </p>
                   <div className="flex flex-col gap-3 md:gap-4 text-sm md:text-md">
                     {section.items.map((item, itemIndex) => (
-                      <Link href={item.link}>
+                      <Link key={itemIndex} href={item.link}>
                         <motion.p
                           key={itemIndex}
                           initial={{ x: -10, opacity: 0 }}

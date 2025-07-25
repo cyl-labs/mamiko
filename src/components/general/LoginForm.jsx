@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { toast } from "sonner";
 import { signUp, login, loginWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
@@ -22,10 +23,14 @@ export default function LoginForm({ children }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   async function handleLogin() {
+    setIsLoading(true);
     const { error } = await login({ email, password });
+    setIsLoading(false);
 
     if (error) setErrorMessage(error.message);
     else {
@@ -36,10 +41,22 @@ export default function LoginForm({ children }) {
 
   async function handleSignUp() {
     if (password === confirmPassword) {
-      const { error } = await signUp({ email, password, firstName, lastName });
+      setIsLoading(true);
+      const { error } = await signUp({
+        email: email.trim(),
+        password: password.trim(),
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+      });
+      setIsLoading(false);
 
       if (error) setErrorMessage(error.message);
-      else router.push("/products");
+      else {
+        setDialogOpen(false);
+        toast(
+          "Verify your email first before logging in, we just sent you a verification email."
+        );
+      }
     } else {
       setErrorMessage("Passwords do not match");
     }
@@ -58,7 +75,7 @@ export default function LoginForm({ children }) {
 
   if (isLogin) {
     return (
-      <Dialog>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger className="flex items-center">{children}</DialogTrigger>
         <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
           <DialogHeader className="flex flex-col items-center">
@@ -133,8 +150,9 @@ export default function LoginForm({ children }) {
           <Button
             className="w-full bg-[#e6b724] my-2 h-10 md:h-auto"
             onClick={handleLogin}
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </Button>
           <p
             className={`text-sm text-[#ed5471] text-center ${
@@ -156,7 +174,7 @@ export default function LoginForm({ children }) {
   }
 
   return (
-    <Dialog>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
         <DialogHeader className="flex flex-col items-center">
@@ -258,8 +276,9 @@ export default function LoginForm({ children }) {
         <Button
           className="w-full bg-[#e6b724] my-2 h-10 md:h-auto"
           onClick={handleSignUp}
+          disabled={isLoading}
         >
-          Sign up
+          {isLoading ? "Signing up..." : "Sign up"}
         </Button>
         <p
           className={`text-sm text-[#ed5471] text-center ${
