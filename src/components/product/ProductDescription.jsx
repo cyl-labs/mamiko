@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -9,11 +9,13 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
-import { Minus, Plus } from "lucide-react";
+import { motion } from "framer-motion";
+import { Minus, Plus, Heart } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function ProductDescription({ product, items, setItems, user }) {
   const [quantity, setQuantity] = useState(1);
+  const [wishlist, setWishlist] = useState([]);
 
   function incrementQuantity() {
     setQuantity((prev) => prev + 1);
@@ -67,10 +69,70 @@ export default function ProductDescription({ product, items, setItems, user }) {
     }
   }
 
+  async function selectWishlist() {
+    const { data, error } = await supabase
+      .from("Wishlists")
+      .select("*")
+      .eq("uid", user.id)
+      .single();
+
+    if (error) console.error(error);
+    else setWishlist(data.items);
+  }
+
+  async function updateWishlist() {
+    if (user) {
+      const isInWishlist = wishlist.some((item) => item.id === product.id);
+      let newWishlist;
+
+      if (isInWishlist)
+        newWishlist = wishlist.filter((item) => item.id !== product.id);
+      else newWishlist = [...wishlist, { id: product.id }];
+
+      const { error } = await supabase
+        .from("Wishlists")
+        .update({ items: newWishlist })
+        .eq("uid", user.id);
+
+      if (error) console.error(error);
+      else setWishlist(newWishlist);
+    } else {
+      toast("Log in to access your wishlist.");
+    }
+  }
+
+  useEffect(() => {
+    if (user) selectWishlist();
+  }, [user]);
+
   if (product) {
     return (
       <div className="w-1/2 flex flex-col gap-8 max-md:w-full">
-        <h1 className="text-5xl font-bold">{product.name}</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-5xl font-bold">{product.name}</h1>
+          <Button
+            variant="link"
+            className="w-9 h-7 !p-0"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              updateWishlist();
+            }}
+          >
+            <motion.div
+              key={wishlist.some((item) => item.id === product.id)}
+              whileHover={{ scale: 1.2 }}
+            >
+              <Heart
+                className={`min-w-6 min-h-6 transition-colors duration-300 ${
+                  wishlist.some((item) => item.id === product.id)
+                    ? "text-[#ed5471] fill-[#ffbdc0]"
+                    : ""
+                }`}
+              />
+            </motion.div>
+          </Button>
+        </div>
         <p className="text-3xl">${product.price.toFixed(2)} SGD</p>
         <p>
           Mamiko Pure Water Baby Wipes are specially designed for newborns and
