@@ -201,7 +201,7 @@ export default function Cart({
             </div>
 
             {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto no-scrollbar">
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-gray-500">
                   <ShoppingCart className="w-12 h-12 mb-3 text-gray-300" />
