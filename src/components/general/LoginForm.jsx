@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +13,6 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { signUp, login, loginWithGoogle } from "@/lib/auth";
 import { useRouter } from "next/navigation";
-import { CircleUserRound } from "lucide-react";
 
 export default function LoginForm({ children }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -22,14 +21,14 @@ export default function LoginForm({ children }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   async function handleLogin() {
     const { error } = await login({ email, password });
 
-    if (error) {
-      console.log(error.message);
-    } else {
+    if (error) setErrorMessage(error.message);
+    else {
       router.push("/products");
       localStorage.removeItem("guestCart");
     }
@@ -39,20 +38,23 @@ export default function LoginForm({ children }) {
     if (password === confirmPassword) {
       const { error } = await signUp({ email, password, firstName, lastName });
 
-      if (error) {
-        console.log(error.message);
-      } else {
-        router.push("/products");
-      }
+      if (error) setErrorMessage(error.message);
+      else router.push("/products");
+    } else {
+      setErrorMessage("Passwords do not match");
     }
   }
 
   async function handleGoogleLogin() {
     const { error } = await loginWithGoogle();
 
-    if (error) console.error(error);
+    if (error) setErrorMessage(error.message);
     else localStorage.removeItem("guestCart");
   }
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, [isLogin]);
 
   if (isLogin) {
     return (
@@ -134,6 +136,13 @@ export default function LoginForm({ children }) {
           >
             Login
           </Button>
+          <p
+            className={`text-sm text-[#ed5471] text-center ${
+              errorMessage === "" ? "hidden" : ""
+            }`}
+          >
+            {errorMessage}
+          </p>
           <Button
             variant="link"
             onClick={() => setIsLogin(false)}
@@ -148,9 +157,7 @@ export default function LoginForm({ children }) {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <CircleUserRound size={32} className="cursor-pointer md:w-8 md:h-8" />
-      </DialogTrigger>
+      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="max-h-[90vh] overflow-scroll py-8 no-scrollbar">
         <DialogHeader className="flex flex-col items-center">
           <DialogTitle className="text-lg md:text-xl">
@@ -254,6 +261,13 @@ export default function LoginForm({ children }) {
         >
           Sign up
         </Button>
+        <p
+          className={`text-sm text-[#ed5471] text-center ${
+            errorMessage === "" ? "hidden" : ""
+          }`}
+        >
+          {errorMessage}
+        </p>
         <Button
           variant="link"
           onClick={() => setIsLogin(true)}
