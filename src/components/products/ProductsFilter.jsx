@@ -21,7 +21,7 @@ export default function ProductsFilter({ name, filters, setFilters }) {
       <Checkbox
         checked={checked}
         onCheckedChange={addFilter}
-        className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD]"
+        className="w-5 h-5 border-[#4065DD] data-[state=checked]:bg-[#4065DD] data-[state=checked]:border-[#4065DD] hover:cursor-pointer"
       />
       <h3 className="text-lg">{name}</h3>
     </div>

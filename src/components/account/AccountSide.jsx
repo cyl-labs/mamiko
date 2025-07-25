@@ -31,7 +31,7 @@ export default function AccountSide({ mode, setMode }) {
       <div className="flex flex-col mt-4 gap-8">
         <div className="flex flex-col flex-wrap gap-8 max-md:flex-row">
           <div
-            className={`flex items-center text-nowrap gap-4 ${
+            className={`flex items-center text-nowrap gap-4 hover:cursor-pointer hover:scale-105 duration-200 ${
               mode === "Account Details" ? "text-[#e6b724] font-bold" : ""
             }`}
             onClick={() => setMode("Account Details")}
@@ -40,7 +40,7 @@ export default function AccountSide({ mode, setMode }) {
             <h3 className="text-lg">Account Details</h3>
           </div>
           <div
-            className={`flex items-center text-nowrap gap-4 ${
+            className={`flex items-center text-nowrap gap-4 hover:cursor-pointer hover:scale-105 duration-200 ${
               mode === "Orders" ? "text-[#e6b724] font-bold" : ""
             }`}
             onClick={() => setMode("Orders")}
@@ -49,7 +49,7 @@ export default function AccountSide({ mode, setMode }) {
             <h3 className="text-lg">Orders</h3>
           </div>
           <div
-            className={`flex items-center text-nowrap gap-4 ${
+            className={`flex items-center text-nowrap gap-4 hover:cursor-pointer hover:scale-105 duration-200 ${
               mode === "Wishlist" ? "text-[#e6b724] font-bold" : ""
             }`}
             onClick={() => setMode("Wishlist")}
@@ -59,9 +59,9 @@ export default function AccountSide({ mode, setMode }) {
           </div>
         </div>
         <Dialog>
-          <DialogTrigger asChild>
+          <DialogTrigger asChild className = "hover:cursor-pointer hover:scale-105 duration-200">
             <Button
-              className="w-fit flex items-center text-[#ed5471] !p-0 gap-4"
+              className="w-fit flex items-center text-[#ed5471] !p-0 gap-4 font-black duration-200"
               variant="link"
             >
               Log Out

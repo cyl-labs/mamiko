@@ -98,7 +98,7 @@ export default function ProductsItem({
           }}
         >
           <Button
-            className="w-full bg-[#4065DD] hover:bg-[#ACB8FE]"
+            className="w-full hover:cursor-pointer bg-[#4065DD] hover:bg-[#404bdd]"
             onClick={updateCart}
           >
             Add to cart
